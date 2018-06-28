@@ -1,3 +1,16 @@
+# Diretorios de compilacao Java
+/E-commerce/build
+/E-commerce/dist
+
+/E-commerce/E-commerce-ejb/build
+/E-commerce/E-commerce-ejb/dist/
+
+/E-commerce-shared/build
+/E-commerce-shared/dist
+
+/E-commerce-web/build
+/E-commerce-web/dist
+
 # Compiled class file
 *.class
 
@@ -21,3 +34,7 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+/E-commerce/nbproject/private/
+/E-commerce/E-commerce-ejb/nbproject/private/
+/E-commerce-shared/nbproject/private/
+/E-commerce-web/nbproject/private/
