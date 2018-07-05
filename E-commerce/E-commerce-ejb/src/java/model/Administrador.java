@@ -11,16 +11,16 @@ package model;
  */
 public class Administrador {
 
-    private int CADMIN;
+    private int CADMINISTRADOR;
     private String LOGIN;
     private String SENHA;
 
-    public int getCADMIN() {
-        return CADMIN;
+    public int getCADMINISTRADOR() {
+        return CADMINISTRADOR;
     }
 
-    public void setCADMIN(int CADMIN) {
-        this.CADMIN = CADMIN;
+    public void setCADMINISTRADOR(int CADMINISTRADOR) {
+        this.CADMINISTRADOR = CADMINISTRADOR;
     }
 
     public String getLOGIN() {
