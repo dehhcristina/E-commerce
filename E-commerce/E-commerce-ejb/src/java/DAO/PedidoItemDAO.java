@@ -44,7 +44,7 @@ public class PedidoItemDAO {
     }
     
     public void save(PedidoItem pedidoItem) throws Exception {
-        String SQL = "INSERT INTO PEDIDOITEM(CPEDIDOITEM, UF, DATA, CPF, RUA, NUMERO, BAIRRO, CIDADE, TOTAL) VALUES(?,?,?,?,?,?,?,?,?)";
+        String SQL = "INSERT INTO PEDIDOITEM(CPEDIDOITEM, CPEDIDO, CPRODUTO, QTDE) VALUES(?,?,?,?)";
         try{
             PreparedStatement p = connection.prepareStatement(SQL);
             p.setInt(1, pedidoItem.getCPEDIDOITEM());
@@ -62,7 +62,7 @@ public class PedidoItemDAO {
     public void update(PedidoItem pedidoItem) throws Exception {
         PreparedStatement p;
         try{
-            p = connection.prepareStatement("UPDATE PEDIDOITEM SET UF=?, DATA=?, CPF=?, RUA=?, NUMERO=?, BAIRRO=?, CIDADE=?, TOTAL=?, CPEDIDOITEM=? WHERE CPEDIDOITEM=?");
+            p = connection.prepareStatement("UPDATE PEDIDOITEM SET CPEDIDOITEM=? CPEDIDO=? CPRODUTO=?, QTDE=? WHERE CPEDIDOITEM=?");
             p.setInt(1, pedidoItem.getCPEDIDOITEM());
                 p.setInt(2, pedidoItem.getCPEDIDO().getCPEDIDO());
                 p.setInt(3, pedidoItem.getCPRODUTO().getCPRODUTO());

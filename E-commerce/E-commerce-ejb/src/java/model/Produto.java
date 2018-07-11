@@ -15,7 +15,7 @@ public class Produto {
     private int CPRODUTO;
     private String PRODUTO;
     private String DESCRICAO;
-    private byte[] IMAGEM;
+    private String IMAGEM;
     private double VALOR;
     private String FICHA;
     private double DESCONTO;
@@ -47,11 +47,11 @@ public class Produto {
         this.DESCRICAO = DESCRICAO;
     }
 
-    public byte[] getIMAGEM() {
+    public String getIMAGEM() {
         return IMAGEM;
     }
 
-    public void setIMAGEM(byte[] IMAGEM) {
+    public void setIMAGEM(String IMAGEM) {
         this.IMAGEM = IMAGEM;
     }
 
