@@ -8,6 +8,8 @@ package beans;
 import DAO.PedidoDAO;
 import DAO.PedidoItemDAO;
 import java.sql.SQLException;
+import java.util.logging.Logger;
+import javax.ejb.Stateless;
 import model.Pedido;
 import model.PedidoItem;
 
@@ -15,22 +17,25 @@ import model.PedidoItem;
  *
  * @author Loren
  */
-public class ComprarBean {
+@Stateless
+public class ComprarBean implements ComprarBeanRemote, ComprarBeanLocal {
 
-    public boolean comprarBean(Pedido pedido, PedidoItem pedidoItem) throws Exception {
+    public boolean comprarBean(int pedido, int pedidoItem) {
         boolean comprado = false;
 
         try {
             PedidoDAO pedidoDAO = new PedidoDAO();
-            pedidoDAO.save(pedido);
+            Pedido pedidoP = pedidoDAO.findById(pedido);
+            pedidoDAO.save(pedidoP);
 
             PedidoItemDAO pedidoItemDAO = new PedidoItemDAO();
-            pedidoItemDAO.save(pedidoItem);
+            PedidoItem pedidoItemP = pedidoItemDAO.findById(pedidoItem);
+            pedidoItemDAO.save(pedidoItemP);
             comprado = true;
         } catch (SQLException ex) {
-            throw new SQLException("Ocorreu um erro inesperado!", ex);
+            Logger.getLogger("Ocorreu um erro inesperado!");
         } catch (Exception ex) {
-            throw new Exception("Ocorreu um erro insperado!", ex);
+            Logger.getLogger("Ocorreu um erro inesperado!");
         }
 
         return comprado;
