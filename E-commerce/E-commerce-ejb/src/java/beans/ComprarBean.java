@@ -20,7 +20,7 @@ import model.PedidoItem;
 @Stateless
 public class ComprarBean implements ComprarBeanRemote, ComprarBeanLocal {
 
-    public boolean comprarBean(int pedido, int pedidoItem) {
+    public boolean comprarBean(int pedido, int[] pedidoItem) {
         boolean comprado = false;
 
         try {
@@ -29,8 +29,10 @@ public class ComprarBean implements ComprarBeanRemote, ComprarBeanLocal {
             pedidoDAO.save(pedidoP);
 
             PedidoItemDAO pedidoItemDAO = new PedidoItemDAO();
-            PedidoItem pedidoItemP = pedidoItemDAO.findById(pedidoItem);
-            pedidoItemDAO.save(pedidoItemP);
+            for (int i = 0; i <= pedidoItem.length; i++) {
+                PedidoItem pedidoItemP = pedidoItemDAO.findById(pedidoItem[i]);
+                pedidoItemDAO.save(pedidoItemP);
+            }
             comprado = true;
         } catch (SQLException ex) {
             Logger.getLogger("Ocorreu um erro inesperado!");
