@@ -52,7 +52,6 @@ public class CategoriaDAO {
             p.setInt(3, categoria.getCDEPARTAMENTO().getCDEPARTAMENTO());
             p.execute();
             p.close();
-            connection.close();
         } catch (SQLException ex) {
             throw new Exception(ex);
         }
@@ -79,7 +78,6 @@ public class CategoriaDAO {
             p.setInt(1, categoria.getCCATEGORIA());
             p.execute();
             p.close();
-            connection.close();
         } catch (SQLException ex) {
             throw new Exception(ex);
         }

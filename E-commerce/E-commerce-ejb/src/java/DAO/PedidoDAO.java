@@ -63,7 +63,6 @@ public class PedidoDAO {
             p.setDouble(9, pedido.getTOTAL());
             p.execute();
             p.close();
-            connection.close();
         } catch (SQLException ex) {
             throw new Exception(ex);
         }
@@ -96,7 +95,6 @@ public class PedidoDAO {
             p.setInt(1, pedido.getCPEDIDO());
             p.execute();
             p.close();
-            connection.close();
         } catch (SQLException ex) {
             throw new Exception(ex);
         }

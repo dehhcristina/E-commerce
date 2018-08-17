@@ -49,7 +49,6 @@ public class MarcaDAO {
             p.setString(2, marca.getMARCA());
             p.execute();
             p.close();
-            connection.close();
         } catch (SQLException ex) {
             throw new Exception(ex);
         }
@@ -75,7 +74,6 @@ public class MarcaDAO {
             p.setInt(1, marca.getCMARCA());
             p.execute();
             p.close();
-            connection.close();
         } catch (SQLException ex) {
             throw new Exception(ex);
         }

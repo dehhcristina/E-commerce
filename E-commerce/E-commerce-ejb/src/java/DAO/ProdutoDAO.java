@@ -66,7 +66,6 @@ public class ProdutoDAO {
                 p.setInt(10, produto.getCCATEGORIA().getCCATEGORIA());
             p.execute();
             p.close();
-            connection.close();
         } catch (SQLException ex) {
             throw new Exception(ex);
         }
@@ -101,7 +100,6 @@ public class ProdutoDAO {
             p.setInt(1, produto.getCPRODUTO());
             p.execute();
             p.close();
-            connection.close();
         } catch (SQLException ex) {
             throw new Exception(ex);
         }

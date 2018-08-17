@@ -53,7 +53,6 @@ public class PedidoItemDAO {
                 p.setInt(4, pedidoItem.getQTDE());
             p.execute();
             p.close();
-            connection.close();
         } catch (SQLException ex) {
             throw new Exception(ex);
         }
@@ -81,7 +80,6 @@ public class PedidoItemDAO {
             p.setInt(1, pedidoItem.getCPEDIDOITEM());
             p.execute();
             p.close();
-            connection.close();
         } catch (SQLException ex) {
             throw new Exception(ex);
         }

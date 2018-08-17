@@ -49,7 +49,6 @@ public class DepartamentoDAO {
             p.setString(2, departamento.getDEPARTAMENTO());
             p.execute();
             p.close();
-            connection.close();
         } catch (SQLException ex) {
             throw new Exception(ex);
         }
@@ -75,7 +74,6 @@ public class DepartamentoDAO {
             p.setInt(1, departamento.getCDEPARTAMENTO());
             p.execute();
             p.close();
-            connection.close();
         } catch (SQLException ex) {
             throw new Exception(ex);
         }

@@ -49,7 +49,6 @@ public class EstadoDAO {
             p.setString(2, estado.getDESCRICAO());
             p.execute();
             p.close();
-            connection.close();
         } catch (SQLException ex) {
             throw new Exception(ex);
         }
@@ -75,7 +74,6 @@ public class EstadoDAO {
             p.setString(1, estado.getUF());
             p.execute();
             p.close();
-            connection.close();
         } catch (SQLException ex) {
             throw new Exception(ex);
         }

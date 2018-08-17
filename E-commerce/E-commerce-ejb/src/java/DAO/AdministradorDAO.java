@@ -51,7 +51,6 @@ public class AdministradorDAO {
             p.setString(3, admin.getSENHA());
             p.execute();
             p.close();
-            connection.close();
         } catch (SQLException ex) {
             throw new Exception(ex);
         }
@@ -78,7 +77,6 @@ public class AdministradorDAO {
             p.setInt(1, admin.getCADMINISTRADOR());
             p.execute();
             p.close();
-            connection.close();
         } catch (SQLException ex) {
             throw new Exception(ex);
         }
