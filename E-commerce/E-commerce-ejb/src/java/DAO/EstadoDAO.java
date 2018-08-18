@@ -23,11 +23,11 @@ public class EstadoDAO {
         connection = ConnectionUtil.getConnection();
     }
     
-    public Estado findById(int UF) throws Exception{
+    public Estado findById(String UF) throws Exception{
         try{
             Estado estado = new Estado();
             PreparedStatement p = connection.prepareStatement("SELECT * FROM ESTADO WHERE UF=?");
-            p.setInt(1, UF);
+            p.setString(1, UF);
             
             ResultSet rs = p.executeQuery();
             
