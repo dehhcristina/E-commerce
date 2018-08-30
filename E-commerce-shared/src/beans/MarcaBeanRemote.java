@@ -13,5 +13,5 @@ import javax.ejb.Remote;
  */
 @Remote
 public interface MarcaBeanRemote {
-    
+    public boolean marcaBean(String MARCA);
 }

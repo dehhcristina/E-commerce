@@ -16,7 +16,7 @@ public class ConnectionUtil {
         
         try {
             ctx = new InitialContext();
-            DataSource ds = (DataSource) ctx.lookup("jdbc/bestcard-pool");
+            DataSource ds = (DataSource) ctx.lookup("jdbc/e-commerce-pool");
             con = ds.getConnection();
         } catch (SQLException ex) {
             Logger.getLogger(ConnectionUtil.class.getName()).log(Level.SEVERE, null, ex);

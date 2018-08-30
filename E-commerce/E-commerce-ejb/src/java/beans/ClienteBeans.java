@@ -7,6 +7,7 @@ package beans;
 
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
+import model.Cliente;
 
 /**
  *
@@ -18,9 +19,9 @@ public class ClienteBeans implements ClienteBeansLocal, ClienteBeansRemote{
         boolean inserido = false;
         
         try {
-            ClienteDAO clienteDAO = new ClienteDAO();
-            Cliente clienteC = clienteDAO.findById(CCLIENTE);
-            clienteDAO.save(clienteC);
+//            ClienteDAO clienteDAO = new ClienteDAO();
+//            Cliente clienteC = clienteDAO.findById(CCLIENTE);
+//            clienteDAO.save(clienteC);
             
             inserido = true;
         } catch (Exception ex) {

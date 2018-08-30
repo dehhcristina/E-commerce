@@ -16,7 +16,7 @@ public class Pedido {
     private int CPEDIDO;
     private Estado UF;
     private Date DATA;
-    private String CPF;
+    private Cliente CCLIENTE;
     private String RUA;
     private int NUMERO;
     private String BAIRRO;
@@ -47,12 +47,12 @@ public class Pedido {
         this.DATA = DATA;
     }
 
-    public String getCPF() {
-        return CPF;
+    public Cliente getCCLIENTE() {
+        return CCLIENTE;
     }
 
-    public void setCPF(String CPF) {
-        this.CPF = CPF;
+    public void setCCLIENTE(Cliente CCLIENTE) {
+        this.CCLIENTE = CCLIENTE;
     }
 
     public String getRUA() {

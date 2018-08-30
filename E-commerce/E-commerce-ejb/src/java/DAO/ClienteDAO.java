@@ -9,44 +9,44 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import model.Marca;
+import model.Cliente;
 import util.ConnectionUtil;
 
 /**
  *
- * @author dp005977
+ * @author Débora Pinheiro
  */
-public class MarcaDAO {
+public class ClienteDAO {
     private Connection connection;
     
-    public MarcaDAO() throws Exception{
+    public ClienteDAO() throws Exception{
         connection = ConnectionUtil.getConnection();
     }
     
-    public Marca findById(int CMARCA) throws Exception{
+    public Cliente findById(int CCLIENTE) throws Exception{
         try{
-            Marca marca = new Marca();
-            PreparedStatement p = connection.prepareStatement("SELECT * FROM MARCA WHERE CMARCA=?");
-            p.setInt(1, CMARCA);
+            Cliente cliente = new Cliente();
+            PreparedStatement p = connection.prepareStatement("SELECT * FROM CLIENTE WHERE CCLIENTE=?");
+            p.setInt(1, CCLIENTE);
             
             ResultSet rs = p.executeQuery();
             
             if(rs.next()){
-                marca.setCMARCA(rs.getInt("CMARCA"));
-                marca.setMARCA(rs.getString("MARCA"));
+                cliente.setCCLIENTE(rs.getInt("CCLIENTE"));
+                cliente.setCPF(rs.getString("CPF"));
             }
-            return marca;
+            return cliente;
         }catch (SQLException ex){
             throw new Exception("Erro ao processar consulta! Verifique o log do aplicativo. ", ex);
         }
     }
     
-    public void save(Marca marca) throws Exception {
-        String SQL = "INSERT INTO MARCA(CMARCA, MARCA) VALUES(?,?)";
+    public void save(Cliente cliente) throws Exception {
+        String SQL = "INSERT INTO CLIENTE(CCLIENTE, CPF) VALUES(?,?)";
         try{
             PreparedStatement p = connection.prepareStatement(SQL);
-            p.setInt(1, marca.getCMARCA());
-            p.setString(2, marca.getMARCA());
+            p.setInt(1, cliente.getCCLIENTE());
+            p.setString(2, cliente.getCPF());
             p.execute();
             p.close();
         } catch (SQLException ex) {
@@ -54,12 +54,12 @@ public class MarcaDAO {
         }
     }
     
-    public void update(Marca marca) throws Exception {
+    public void update(Cliente cliente) throws Exception {
         PreparedStatement p;
         try{
-            p = connection.prepareStatement("UPDATE MARCA SET MARCA=?, CMARCA=? WHERE CMARCA=?");
-            p.setInt(1, marca.getCMARCA());
-            p.setString(2, marca.getMARCA());
+            p = connection.prepareStatement("UPDATE CLIENTE SET CCLIENTE=?, CPF=? WHERE CCLIENTE=?");
+            p.setInt(1, cliente.getCCLIENTE());
+            p.setString(2, cliente.getCPF());
             p.execute();
             p.close();
         } catch (SQLException ex) {
@@ -67,11 +67,11 @@ public class MarcaDAO {
         }
     }
     
-    public void delete(Marca marca) throws Exception {
-        String SQL = "DELETE FROM MARCA WHERE CMARCA=?";
+    public void delete(Cliente cliente) throws Exception {
+        String SQL = "DELETE FROM CLIENTE WHERE CCLIENTE=?";
         try{
             PreparedStatement p = connection.prepareStatement(SQL);
-            p.setInt(1, marca.getCMARCA());
+            p.setInt(1, cliente.getCCLIENTE());
             p.execute();
             p.close();
         } catch (SQLException ex) {

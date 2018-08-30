@@ -18,18 +18,19 @@ import model.Marca;
  */
 @Stateless
 public class MarcaBean implements MarcaBeanRemote, MarcaBeanLocal {
-    public boolean marcaBean(int CMARCA) {
+    public boolean marcaBean(String MARCA) {
         boolean inserido = false;
         
         try {
             MarcaDAO marcaDAO = new MarcaDAO();
-            Marca marcaM = marcaDAO.findById(CMARCA);
-            marcaDAO.save(marcaM);
+            Marca marca = new Marca();
+            marca.setMARCA(MARCA);
+            marcaDAO.save(marca);
             
             inserido = true;
         
         } catch (Exception ex) {
-            Logger.getLogger("Ocorreu um erro inesperado!");
+            Logger.getLogger(MarcaBean.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return inserido;

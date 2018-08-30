@@ -32,15 +32,15 @@ public class PedidoDAO {
             ResultSet rs = p.executeQuery();
             
             if(rs.next()){
-                p.setInt(1, pedido.getCPEDIDO());
-                p.setString(2, pedido.getUF().getUF());
-                p.setDate(3, new java.sql.Date(pedido.getDATA().getTime()));
-                p.setString(4, pedido.getCPF());
-                p.setString(5, pedido.getRUA());
-                p.setInt(6, pedido.getNUMERO());
-                p.setString(7, pedido.getBAIRRO());
-                p.setString(8, pedido.getCIDADE());
-                p.setDouble(9, pedido.getTOTAL());
+                pedido.setCPEDIDO(rs.getInt("CPEDIDO"));
+//                pedido.setUF(rs.getString("UF"));
+//                pedido.setDATA(rs.getDate("DATA"));
+//                pedido.setCCLIENTE(rs.getInt("CCLICENTE"));
+                pedido.setRUA(rs.getString("RUA"));
+                pedido.setNUMERO(rs.getInt("NUMERO"));
+                pedido.setBAIRRO(rs.getString("BAIRRO"));
+                pedido.setCIDADE(rs.getString("CIDADE"));
+                pedido.setTOTAL(rs.getDouble("TOTAL"));
             }
             return pedido;
         }catch (SQLException ex){
@@ -55,7 +55,7 @@ public class PedidoDAO {
             p.setInt(1, pedido.getCPEDIDO());
             p.setString(2, pedido.getUF().getUF());
             p.setDate(3, new java.sql.Date(pedido.getDATA().getTime()));
-            p.setString(4, pedido.getCPF());
+//            p.setString(4, pedido.getCCLIENTE().getCCLIENTE());
             p.setString(5, pedido.getRUA());
             p.setInt(6, pedido.getNUMERO());
             p.setString(7, pedido.getBAIRRO());
@@ -75,7 +75,7 @@ public class PedidoDAO {
             p.setInt(1, pedido.getCPEDIDO());
             p.setString(2, pedido.getUF().getUF());
             p.setDate(3, new java.sql.Date(pedido.getDATA().getTime()));
-            p.setString(4, pedido.getCPF());
+//            p.setString(4, pedido.getCCLIENTE().getCCLIENTE());
             p.setString(5, pedido.getRUA());
             p.setInt(6, pedido.getNUMERO());
             p.setString(7, pedido.getBAIRRO());
