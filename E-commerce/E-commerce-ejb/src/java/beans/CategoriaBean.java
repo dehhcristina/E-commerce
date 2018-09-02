@@ -11,7 +11,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import model.Categoria;
-import model.Departamento;
 
 /**
  *
@@ -20,21 +19,22 @@ import model.Departamento;
 @Stateless
 public class CategoriaBean {
 
-    public boolean categoriaBean(int CCATEGORIA) {
+    public boolean categoriaBean(String CATEGORIA, int CDEPARTAMENTO) {
         boolean inserido = false;
-        
+
         try {
             CategoriaDAO categoriaDAO = new CategoriaDAO();
-            Categoria categoriaC = categoriaDAO.findById(CCATEGORIA);
-            categoriaDAO.save(categoriaC);
-            
+            Categoria categoria = new Categoria();
+            categoria.setCATEGORIA(CATEGORIA);
+            DepartamentoDAO departamentoDAO = new DepartamentoDAO();
+            categoria.setCDEPARTAMENTO(departamentoDAO.findById(CDEPARTAMENTO));
+            categoriaDAO.save(categoria);
+
             inserido = true;
         } catch (Exception ex) {
-            Logger.getLogger("Ocorreu um erro inesperado!");
+            Logger.getLogger(DepartamentoBean.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        
+
         return inserido;
     }
 }

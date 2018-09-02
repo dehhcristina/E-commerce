@@ -8,6 +8,10 @@
         <servlet-name>DepartamentoServlet</servlet-name>
         <servlet-class>web.DepartamentoServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CategoriaServlet</servlet-name>
+        <servlet-class>web.CategoriaServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MarcaServlet</servlet-name>
         <url-pattern>/marca</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>DepartamentoServlet</servlet-name>
         <url-pattern>/departamento</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CategoriaServlet</servlet-name>
+        <url-pattern>/categoria</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

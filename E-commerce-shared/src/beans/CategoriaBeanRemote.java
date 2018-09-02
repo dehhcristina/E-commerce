@@ -13,5 +13,6 @@ import javax.ejb.Remote;
  */
 @Remote
 public interface CategoriaBeanRemote {
-    
+
+    public boolean categoriaBean(String CATEGORIA, int CDEPARTAMENTO);
 }
