@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="pt-BR" dir="ltr">
+   <head>
+       <meta charset="utf-8">
+       <meta name="author" content="NOME CRIADOR">
+       <meta name="keywords" content="PALAVRAS, CHAVES, SEPARADAS, POR, VIRGULA">
+       <meta name="description" content="Descrição do site">
+<link rel="stylesheet" href="style/normalize.css">
+       <link rel="stylesheet" href="style/estilo.css">
+<!--[if lt IE 9]>
+           <script src="script/html5shiv.js"></script>
+<![endif]-->
+ <script type="text/javascript">
+            var URL = "http://localhost:8080/E-commerce/produto";
+            function registrarProduto(oForm) {
+                var formData = {};
+                formData["PRODUTO"] = oForm.PRODUTO.value;
+                formData["DESCRICAO"] = oForm.DESCRICAO.value;
+                formData["IMAGEM"] = oForm.IMAGEM.value;
+                formData["VALOR"] = Number(oForm.VALOR.value);
+                formData["FICHA"] = oForm.FICHA.value;
+                formData["DESCONTO"] = Number(oForm.DESCONTO.value);
+                formData["ESTOQUE"] = Number(oForm.ESTOQUE.value);
+                formData["CMARCA"] = Number(oForm.CMARCA.value);
+                formData["CCATEGORIA"] = Number(oForm.CCATEGORIA.value);
+                var http = new XMLHttpRequest();
+                http.onreadystatechange = function ()
+                {
+                    if (this.readyState === 4 && this.status === 200) {
+                        parseJson(this.responseText);
+                    }
+                    if (this.readyState === 4 && this.status !== 200) {
+                        document.getElementById("result").innerHTML = "Erro: " + this.statusText;
+                    }
+                    if (this.readyState === 3) {
+                        document.getElementById("result").innerHTML = "Aguarde...";
+                    }
+                };
+                http.open("POST", URL);
+                http.setRequestHeader("Content-type", "application/json");
+                http.send( JSON.stringify(formData) );
+            }
+            function parseJson(jsonData) {
+                var obj = JSON.parse(jsonData);
+                document.getElementById("result").innerHTML = "" + obj.mensagem;
+            }
+        </script>
+       <title>Cadastrar categoria</title>
+   </head>
+   <body>
+<form method="post">
+<label>Produto:</label>
+<input id="PRODUTO" type="text">
+<label>Descrição do Produto:</label>
+<input id="DESCRICAO" type="text">
+<label>Imagem:</label>
+<input id="IMAGEM" type="text">
+<label>Valor:</label>
+<input id="VALOR" type="text">
+<label>Ficha:</label>
+<input id="FICHA" type="text">
+<label>Desconto:</label>
+<input id="DESCONTO" type="text">
+<label>Estoque:</label>
+<input id="ESTOQUE" type="text">
+<label>Marca:</label>
+<input id="CMARCA" type="text">
+<label>Categoria:</label>
+<input id="CCATEGORIA" type="text">
+<input type="button" value="salvar" onclick="registrarProduto(this.form)">
+<span id="result"></span>
+</form>
+   </body>
+</html>
+
