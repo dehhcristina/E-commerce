@@ -9,10 +9,10 @@ import javax.ejb.Remote;
 
 /**
  *
- * @author Débora Pinheiro
+ * @author Loren
  */
 @Remote
 public interface CategoriaBeanRemote {
 
-    public boolean categoriaBean(String CATEGORIA, int CDEPARTAMENTO);
+    public boolean categoriaBean(String CATEGORIA, int DEPARTAMENTO);
 }

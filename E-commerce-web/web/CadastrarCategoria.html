@@ -20,7 +20,7 @@ and open the template in the editor.
             function registrarCategoria(oForm) {
                 var formData = {};
                 formData["CATEGORIA"] = oForm.CATEGORIA.value;
-                formData["CDEPARTAMENTO"] = o.Form.CDEPARTAMENTO.value;
+                formData["CDEPARTAMENTO"] = Number(oForm.CDEPARTAMENTO.value);
                 var http = new XMLHttpRequest();
                 http.onreadystatechange = function ()
                 {
@@ -49,7 +49,8 @@ and open the template in the editor.
 <form method="post">
 <label>Descrição da categoria:</label>
 <input id="CATEGORIA" type="text">
-<input id="CDEPARTAMENTO" type="number">
+<label>Departamento:</label>
+<input id="CDEPARTAMENTO" type="text">
 <input type="button" value="salvar" onclick="registrarCategoria(this.form)">
 <span id="result"></span>
 </form>

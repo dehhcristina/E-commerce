@@ -17,9 +17,9 @@ import model.Categoria;
  * @author Débora Pinheiro
  */
 @Stateless
-public class CategoriaBean {
+public class CategoriaBean implements CategoriaBeanRemote, CategoriaBeanLocal {
 
-    public boolean categoriaBean(String CATEGORIA, int CDEPARTAMENTO) {
+    public boolean categoriaBean(String CATEGORIA, int DEPARTAMENTO) {
         boolean inserido = false;
 
         try {
@@ -27,7 +27,7 @@ public class CategoriaBean {
             Categoria categoria = new Categoria();
             categoria.setCATEGORIA(CATEGORIA);
             DepartamentoDAO departamentoDAO = new DepartamentoDAO();
-            categoria.setCDEPARTAMENTO(departamentoDAO.findById(CDEPARTAMENTO));
+            categoria.setCDEPARTAMENTO(departamentoDAO.findById(DEPARTAMENTO));
             categoriaDAO.save(categoria);
 
             inserido = true;
