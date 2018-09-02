@@ -16,23 +16,24 @@ import model.Departamento;
  * @author Débora Pinheiro
  */
 @Stateless
-public class DepartamentoBean implements DepartamentoBeanRemote, DepartamentoBeanLocal{
-    public boolean departamentoBean(int CDEPARTAMENTO){
+public class DepartamentoBean implements DepartamentoBeanRemote, DepartamentoBeanLocal {
+
+    public boolean departamentoBean(String DEPARTAMENTO) {
         boolean inserido = false;
-        
+
         try {
             DepartamentoDAO departamentoDAO = new DepartamentoDAO();
-            Departamento departamentoD = departamentoDAO.findById(CDEPARTAMENTO);
-            departamentoDAO.save(departamentoD);
-            
+            Departamento departamento = new Departamento();
+            departamento.setDEPARTAMENTO(DEPARTAMENTO);
+            departamentoDAO.save(departamento);
+
             inserido = true;
+
         } catch (Exception ex) {
-            Logger.getLogger("Ocorreu um erro inesperado!");
+            Logger.getLogger(DepartamentoBean.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        
+
         return inserido;
     }
-    
+
 }
