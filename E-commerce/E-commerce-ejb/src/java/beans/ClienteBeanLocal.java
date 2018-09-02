@@ -12,6 +12,6 @@ import javax.ejb.Local;
  * @author Débora Pinheiro
  */
 @Local
-public interface ClienteBeansLocal {
+public interface ClienteBeanLocal {
     
 }

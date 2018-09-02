@@ -43,7 +43,7 @@ public class ProdutoBean implements ProdutoBeanRemote, ProdutoBeanLocal {
 
             inserido = true;
         } catch (Exception ex) {
-            Logger.getLogger(DepartamentoBean.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProdutoBean.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return inserido;

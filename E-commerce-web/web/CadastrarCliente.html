@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="pt-BR" dir="ltr">
+   <head>
+       <meta charset="utf-8">
+       <meta name="author" content="NOME CRIADOR">
+       <meta name="keywords" content="PALAVRAS, CHAVES, SEPARADAS, POR, VIRGULA">
+       <meta name="description" content="Descrição do site">
+<link rel="stylesheet" href="style/normalize.css">
+       <link rel="stylesheet" href="style/estilo.css">
+<!--[if lt IE 9]>
+           <script src="script/html5shiv.js"></script>
+<![endif]-->
+ <script type="text/javascript">
+            var URL = "http://localhost:8080/E-commerce/cliente";
+            function registrarCliente(oForm) {
+                var formData = {};
+                formData["CPF"] = oForm.CPF.value;
+                formData["NOME"] = oForm.NOME.value;
+                formData["SOBRENOME"] = oForm.SOBRENOME.value;
+                formData["TELEFONE"] = oForm.TELEFONE.value;
+                formData["SENHA"] = oForm.SENHA.value;
+                formData["USUARIO"] = oForm.USUARIO.value;
+                var http = new XMLHttpRequest();
+                http.onreadystatechange = function ()
+                {
+                    if (this.readyState === 4 && this.status === 200) {
+                        parseJson(this.responseText);
+                    }
+                    if (this.readyState === 4 && this.status !== 200) {
+                        document.getElementById("result").innerHTML = "Erro: " + this.statusText;
+                    }
+                    if (this.readyState === 3) {
+                        document.getElementById("result").innerHTML = "Aguarde...";
+                    }
+                };
+                http.open("POST", URL);
+                http.setRequestHeader("Content-type", "application/json");
+                http.send( JSON.stringify(formData) );
+            }
+            function parseJson(jsonData) {
+                var obj = JSON.parse(jsonData);
+                document.getElementById("result").innerHTML = "" + obj.mensagem;
+            }
+        </script>
+       <title>Cadastrar categoria</title>
+   </head>
+   <body>
+<form method="post">
+<label>Nome:</label>
+<input id="NOME" type="text">
+<label>Sobrenome:</label>
+<input id="SOBRENOME" type="text">
+<label>CPF:</label>
+<input id="CPF" type="text">
+<label>Telefone:</label>
+<input id="TELEFONE" type="text">
+<label>Usuário:</label>
+<input id="USUARIO" type="text">
+<label>Senha:</label>
+<input id="SENHA" type="password">
+<input type="button" value="salvar" onclick="registrarCliente(this.form)">
+<span id="result"></span>
+</form>
+   </body>
+</html>
