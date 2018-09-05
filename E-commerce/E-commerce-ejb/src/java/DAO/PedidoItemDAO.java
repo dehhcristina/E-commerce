@@ -9,7 +9,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import model.Pedido;
 import model.PedidoItem;
+import model.Produto;
 import util.ConnectionUtil;
 
 /**
@@ -17,65 +19,70 @@ import util.ConnectionUtil;
  * @author dp005977
  */
 public class PedidoItemDAO {
+
     private Connection connection;
-    
-    public PedidoItemDAO() throws Exception{
+
+    public PedidoItemDAO() throws Exception {
         connection = ConnectionUtil.getConnection();
     }
-    
-    public PedidoItem findById(int CPEDIDOITEM) throws Exception{
-        try{
+
+    public PedidoItem findById(int CPEDIDOITEM) throws Exception {
+        try {
             PedidoItem pedidoItem = new PedidoItem();
+            Pedido pedido = new Pedido();
+            Produto produto = new Produto();
             PreparedStatement p = connection.prepareStatement("SELECT * FROM PEDIDOITEM WHERE CPEDIDOITEM=?");
             p.setInt(1, CPEDIDOITEM);
-            
+
             ResultSet rs = p.executeQuery();
-            
-            if(rs.next()){
-                p.setInt(1, pedidoItem.getCPEDIDOITEM());
-                p.setInt(2, pedidoItem.getCPEDIDO().getCPEDIDO());
-                p.setInt(3, pedidoItem.getCPRODUTO().getCPRODUTO());
-                p.setInt(4, pedidoItem.getQTDE());
+
+            if (rs.next()) {
+                pedidoItem.setCPEDIDOITEM(rs.getInt("CPEDIDOITEM"));
+                pedido.setCPEDIDO(rs.getInt("CPEDIDO"));
+                pedidoItem.setCPEDIDO(pedido);
+                produto.setCPRODUTO(rs.getInt("CPRODUTO"));
+                pedidoItem.setCPRODUTO(produto);
+                pedidoItem.setQTDE(rs.getInt("QTDE"));
             }
             return pedidoItem;
-        }catch (SQLException ex){
+        } catch (SQLException ex) {
             throw new Exception("Erro ao processar consulta! Verifique o log do aplicativo. ", ex);
         }
     }
-    
+
     public void save(PedidoItem pedidoItem) throws Exception {
         String SQL = "INSERT INTO PEDIDOITEM(CPEDIDOITEM, CPEDIDO, CPRODUTO, QTDE) VALUES(?,?,?,?)";
-        try{
+        try {
             PreparedStatement p = connection.prepareStatement(SQL);
             p.setInt(1, pedidoItem.getCPEDIDOITEM());
-                p.setInt(2, pedidoItem.getCPEDIDO().getCPEDIDO());
-                p.setInt(3, pedidoItem.getCPRODUTO().getCPRODUTO());
-                p.setInt(4, pedidoItem.getQTDE());
+            p.setInt(2, pedidoItem.getCPEDIDO().getCPEDIDO());
+            p.setInt(3, pedidoItem.getCPRODUTO().getCPRODUTO());
+            p.setInt(4, pedidoItem.getQTDE());
             p.execute();
             p.close();
         } catch (SQLException ex) {
             throw new Exception(ex);
         }
     }
-    
+
     public void update(PedidoItem pedidoItem) throws Exception {
         PreparedStatement p;
-        try{
+        try {
             p = connection.prepareStatement("UPDATE PEDIDOITEM SET CPEDIDOITEM=? CPEDIDO=? CPRODUTO=?, QTDE=? WHERE CPEDIDOITEM=?");
             p.setInt(1, pedidoItem.getCPEDIDOITEM());
-                p.setInt(2, pedidoItem.getCPEDIDO().getCPEDIDO());
-                p.setInt(3, pedidoItem.getCPRODUTO().getCPRODUTO());
-                p.setInt(4, pedidoItem.getQTDE());
+            p.setInt(2, pedidoItem.getCPEDIDO().getCPEDIDO());
+            p.setInt(3, pedidoItem.getCPRODUTO().getCPRODUTO());
+            p.setInt(4, pedidoItem.getQTDE());
             p.execute();
             p.close();
         } catch (SQLException ex) {
             throw new Exception(ex);
         }
     }
-    
+
     public void delete(PedidoItem pedidoItem) throws Exception {
         String SQL = "DELETE FROM PEDIDOITEM WHERE CPEDIDOITEM=?";
-        try{
+        try {
             PreparedStatement p = connection.prepareStatement(SQL);
             p.setInt(1, pedidoItem.getCPEDIDOITEM());
             p.execute();

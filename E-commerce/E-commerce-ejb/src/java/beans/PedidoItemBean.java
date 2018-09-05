@@ -13,7 +13,7 @@ import model.PedidoItem;
  *
  * @author Débora Pinheiro
  */
-public class PedidoItemBeans implements PedidoItemBeansLocal, PedidoItemBeansRemote{
+public class PedidoItemBean implements PedidoItemBeanLocal, PedidoItemBeansRemote{
     public boolean pedidoItemBeans(int CPEDIDOITEM){
         boolean inserido = false;
         
