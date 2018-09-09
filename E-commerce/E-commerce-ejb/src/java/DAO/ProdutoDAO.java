@@ -9,7 +9,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import model.Categoria;
+import model.Departamento;
 import model.Marca;
 import model.Produto;
 import util.ConnectionUtil;
@@ -109,5 +112,122 @@ public class ProdutoDAO {
         } catch (SQLException ex) {
             throw new Exception(ex);
         }
+    }
+
+    public List<Produto> findAll() throws SQLException, Exception {
+        List<Produto> produtos = new ArrayList<>();
+        Produto produto;
+        Categoria categoria;
+        Marca marca;
+        Departamento departamento;
+        String SQL = " SELECT PRODUTO.*,"
+                + "        MARCA.MARCA,"
+                + "        CATEGORIA.CATEGORIA,"
+                + "        DEPARTAMENTO.DEPARTAMENTO"
+                + " FROM PRODUTO"
+                + " INNER JOIN MARCA ON (MARCA.CMARCA = PRODUTO.CMARCA)"
+                + " INNER JOIN CATEGORIA ON (CATEGORIA.CCATEGORIA = PRODUTO.CCATEGORIA)"
+                + " INNER JOIN DEPARTAMENTO ON (DEPARTAMENTO.CDEPARTAMENTO = CATEGORIA.CDEPARTAMENTO)";
+
+        try {
+            PreparedStatement p = connection.prepareStatement(SQL);
+
+            ResultSet rs = p.executeQuery();
+
+            while (rs.next()) {
+                produto = new Produto();
+                produto.setCPRODUTO(rs.getInt("CPRODUTO"));
+                produto.setPRODUTO(rs.getString("PRODUTO"));
+                produto.setDESCRICAO(rs.getString("DESCRICAO"));
+                produto.setIMAGEM(rs.getString("IMAGEM"));
+                produto.setVALOR(rs.getDouble("VALOR"));
+                produto.setFICHA(rs.getString("FICHA"));
+                produto.setDESCONTO(rs.getDouble("DESCONTO"));
+                produto.setESTOQUE(rs.getInt("ESTOQUE"));
+
+                marca = new Marca();
+                marca.setCMARCA(rs.getInt("CMARCA"));
+                marca.setMARCA(rs.getString("MARCA"));
+                produto.setCMARCA(marca);
+
+                departamento = new Departamento();
+                departamento.setCDEPARTAMENTO(rs.getInt("CDEPARTAMENTO"));
+                departamento.setDEPARTAMENTO(rs.getString("DEPARTAMENTO"));
+
+                categoria = new Categoria();
+                categoria.setCCATEGORIA(rs.getInt("CCATEGORIA"));
+                categoria.setCATEGORIA(rs.getString("CATEGORIA"));
+                categoria.setCDEPARTAMENTO(departamento);
+                produto.setCCATEGORIA(categoria);
+
+                produtos.add(produto);
+            }
+
+            rs.close();
+            p.close();
+        } catch (SQLException ex) {
+            throw new Exception("Erro ao processar consulta! Verifique o log do aplicativo. ", ex);
+        }
+
+        return produtos;
+    }
+
+    public List<Produto> findByName(String PESQUISA) throws Exception {
+        List<Produto> produtos = new ArrayList<>();
+        Produto produto;
+        Categoria categoria;
+        Marca marca;
+        Departamento departamento;
+        String SQL = " SELECT PRODUTO.*,"
+                + "        MARCA.MARCA,"
+                + "        CATEGORIA.CATEGORIA,"
+                + "        DEPARTAMENTO.DEPARTAMENTO"
+                + " FROM PRODUTO"
+                + " INNER JOIN MARCA ON (MARCA.CMARCA = PRODUTO.CMARCA)"
+                + " INNER JOIN CATEGORIA ON (CATEGORIA.CCATEGORIA = PRODUTO.CCATEGORIA)"
+                + " INNER JOIN DEPARTAMENTO ON (DEPARTAMENTO.CDEPARTAMENTO = CATEGORIA.CDEPARTAMENTO)"
+                + " WHERE UPPER(PRODUTO.PRODUTO) LIKE UPPER('%" + PESQUISA + "%')";
+
+        try {
+            PreparedStatement p = connection.prepareStatement(SQL);
+
+            ResultSet rs = p.executeQuery();
+
+            while (rs.next()) {
+                produto = new Produto();
+                produto.setCPRODUTO(rs.getInt("CPRODUTO"));
+                produto.setPRODUTO(rs.getString("PRODUTO"));
+                produto.setDESCRICAO(rs.getString("DESCRICAO"));
+                produto.setIMAGEM(rs.getString("IMAGEM"));
+                produto.setVALOR(rs.getDouble("VALOR"));
+                produto.setFICHA(rs.getString("FICHA"));
+                produto.setDESCONTO(rs.getDouble("DESCONTO"));
+                produto.setESTOQUE(rs.getInt("ESTOQUE"));
+
+                marca = new Marca();
+                marca.setCMARCA(rs.getInt("CMARCA"));
+                marca.setMARCA(rs.getString("MARCA"));
+                produto.setCMARCA(marca);
+
+                departamento = new Departamento();
+                departamento.setCDEPARTAMENTO(rs.getInt("CDEPARTAMENTO"));
+                departamento.setDEPARTAMENTO(rs.getString("DEPARTAMENTO"));
+
+                categoria = new Categoria();
+                categoria.setCCATEGORIA(rs.getInt("CCATEGORIA"));
+                categoria.setCATEGORIA(rs.getString("CATEGORIA"));
+                categoria.setCDEPARTAMENTO(departamento);
+                produto.setCCATEGORIA(categoria);
+
+                produtos.add(produto);
+            }
+
+            rs.close();
+            p.close();
+        } catch (SQLException ex) {
+            throw new Exception("Erro ao processar consulta! Verifique o log do aplicativo. ", ex);
+        }
+
+        return produtos;
     }
 }
