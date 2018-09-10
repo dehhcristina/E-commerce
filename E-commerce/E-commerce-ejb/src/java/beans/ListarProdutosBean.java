@@ -36,7 +36,7 @@ public class ListarProdutosBean implements ListarProdutosBeanLocal, ListarProdut
 
     @Override
     public List<Produto> pesquisarProdutos(String PESQUISA) throws Exception {
-        List<Produto> produto = null;
+        List<Produto> produto = new ArrayList<>();
 
         try {
             ProdutoDAO produtoDAO = new ProdutoDAO();

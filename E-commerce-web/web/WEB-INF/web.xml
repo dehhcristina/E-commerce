@@ -20,6 +20,10 @@
         <servlet-name>ClienteServlet</servlet-name>
         <servlet-class>web.ClienteServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PesquisarProdutosServlet</servlet-name>
+        <servlet-class>web.PesquisarProdutosServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MarcaServlet</servlet-name>
         <url-pattern>/marca</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>ClienteServlet</servlet-name>
         <url-pattern>/cliente</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PesquisarProdutosServlet</servlet-name>
+        <url-pattern>/pesquisarProdutos</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

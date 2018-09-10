@@ -3,9 +3,9 @@
     <title>Consulta Crédito</title>
 
     <script type="text/javascript">
-        var URL = "http://localhost:8080/E-commerce/listarProdutos";
         function carregarProdutos()
         {
+            var URL = "http://localhost:8080/E-commerce/listarProdutos";
             var http = new XMLHttpRequest();
             http.onreadystatechange = function ()
             {
@@ -30,6 +30,28 @@
             http.open("GET", URL);
             http.send();
         }
+        
+        function pesquisarProdutos(oForm) {
+            var URL = "http://localhost:8080/E-commerce/pesquisarProdutos";
+            var formData = {};
+                formData["PESQUISA"] = oForm.PESQUISA.value;
+                var http = new XMLHttpRequest();
+                http.onreadystatechange = function ()
+                {
+                    if (this.readyState === 4 && this.status === 200) {
+                        parseJson(this.responseText);
+                    }
+                    if (this.readyState === 4 && this.status !== 200) {
+                        document.getElementById("result").innerHTML = "Erro: " + this.statusText;
+                    }
+                    if (this.readyState === 3) {
+                        document.getElementById("result").innerHTML = "Aguarde...";
+                    }
+                };
+                http.open("POST", URL);
+                http.setRequestHeader("Content-type", "application/json");
+                http.send( JSON.stringify(formData) );
+        }
         function parseJson(jsonData) {
             var obj = JSON.parse(jsonData);
             document.getElementById("result")
@@ -39,6 +61,10 @@
 
     <body onload="carregarProdutos()">
         <div id="result"></div>
+        <form>
+            <input id="PESQUISA" type="text">
+            <input type="button" value="Buscar" onclick="pesquisarProdutos(this.form)">
+        </form>
     </body>
 
 </html>

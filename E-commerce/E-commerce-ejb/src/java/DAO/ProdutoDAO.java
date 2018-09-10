@@ -178,7 +178,7 @@ public class ProdutoDAO {
         String SQL = " SELECT PRODUTO.*,"
                 + "        MARCA.MARCA,"
                 + "        CATEGORIA.CATEGORIA,"
-                + "        DEPARTAMENTO.DEPARTAMENTO"
+                + "        DEPARTAMENTO.*"
                 + " FROM PRODUTO"
                 + " INNER JOIN MARCA ON (MARCA.CMARCA = PRODUTO.CMARCA)"
                 + " INNER JOIN CATEGORIA ON (CATEGORIA.CCATEGORIA = PRODUTO.CCATEGORIA)"
