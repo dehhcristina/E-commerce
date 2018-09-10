@@ -1,7 +1,6 @@
-package model;
+package dto;
 
-import dto.Categoria;
-import dto.Marca;
+import java.io.Serializable;
 
 
 /*
@@ -13,7 +12,7 @@ import dto.Marca;
  *
  * @author Loren
  */
-public class Produto {
+public class Produto implements Serializable {
 
     private int CPRODUTO;
     private String PRODUTO;
@@ -105,7 +104,5 @@ public class Produto {
     public void setCCATEGORIA(Categoria CCATEGORIA) {
         this.CCATEGORIA = CCATEGORIA;
     }
-    
-    
 
 }

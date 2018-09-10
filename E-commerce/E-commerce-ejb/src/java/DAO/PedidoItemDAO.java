@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import model.Pedido;
 import model.PedidoItem;
-import model.Produto;
+import dto.Produto;
 import util.ConnectionUtil;
 
 /**

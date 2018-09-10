@@ -11,10 +11,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import model.Categoria;
-import model.Departamento;
-import model.Marca;
-import model.Produto;
+import dto.Categoria;
+import dto.Departamento;
+import dto.Marca;
+import dto.Produto;
 import util.ConnectionUtil;
 
 /**
@@ -117,13 +117,10 @@ public class ProdutoDAO {
     public List<Produto> findAll() throws SQLException, Exception {
         List<Produto> produtos = new ArrayList<>();
         Produto produto;
-        Categoria categoria;
-        Marca marca;
-        Departamento departamento;
         String SQL = " SELECT PRODUTO.*,"
                 + "        MARCA.MARCA,"
                 + "        CATEGORIA.CATEGORIA,"
-                + "        DEPARTAMENTO.DEPARTAMENTO"
+                + "        DEPARTAMENTO.*"
                 + " FROM PRODUTO"
                 + " INNER JOIN MARCA ON (MARCA.CMARCA = PRODUTO.CMARCA)"
                 + " INNER JOIN CATEGORIA ON (CATEGORIA.CCATEGORIA = PRODUTO.CCATEGORIA)"
@@ -145,16 +142,16 @@ public class ProdutoDAO {
                 produto.setDESCONTO(rs.getDouble("DESCONTO"));
                 produto.setESTOQUE(rs.getInt("ESTOQUE"));
 
-                marca = new Marca();
+                Marca marca = new Marca();
                 marca.setCMARCA(rs.getInt("CMARCA"));
                 marca.setMARCA(rs.getString("MARCA"));
                 produto.setCMARCA(marca);
 
-                departamento = new Departamento();
+                Departamento departamento = new Departamento();
                 departamento.setCDEPARTAMENTO(rs.getInt("CDEPARTAMENTO"));
                 departamento.setDEPARTAMENTO(rs.getString("DEPARTAMENTO"));
 
-                categoria = new Categoria();
+                Categoria categoria = new Categoria();
                 categoria.setCCATEGORIA(rs.getInt("CCATEGORIA"));
                 categoria.setCATEGORIA(rs.getString("CATEGORIA"));
                 categoria.setCDEPARTAMENTO(departamento);

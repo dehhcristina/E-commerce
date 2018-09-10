@@ -21,6 +21,7 @@ import model.Cliente;
 @Stateless
 public class ClienteBean implements ClienteBeanLocal, ClienteBeanRemote {
 
+    @Override
     public boolean clienteBean(String CPF, String NOME, String SOBRENOME, String TELEFONE, String SENHA, String USUARIO) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         boolean inserido = false;
         MessageDigest algoritmo = MessageDigest.getInstance("MD5");

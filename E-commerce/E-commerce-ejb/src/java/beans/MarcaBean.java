@@ -9,7 +9,7 @@ import DAO.MarcaDAO;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
-import model.Marca;
+import dto.Marca;
 
 /**
  *
@@ -18,6 +18,7 @@ import model.Marca;
 @Stateless
 public class MarcaBean implements MarcaBeanRemote, MarcaBeanLocal {
 
+    @Override
     public boolean marcaBean(String MARCA) {
         boolean inserido = false;
 

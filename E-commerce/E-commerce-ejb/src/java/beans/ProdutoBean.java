@@ -11,17 +11,16 @@ import DAO.ProdutoDAO;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
-import javax.ejb.LocalBean;
-import model.Produto;
+import dto.Produto;
 
 /**
  *
  * @author Loren
  */
 @Stateless
-@LocalBean
 public class ProdutoBean implements ProdutoBeanRemote, ProdutoBeanLocal {
 
+    @Override
     public boolean produtoBean(String PRODUTO, String DESCRICAO, String IMAGEM, double VALOR, String FICHA, double DESCONTO, int ESTOQUE, int MARCA, int CATEGORIA) {
         boolean inserido = false;
 

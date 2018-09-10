@@ -9,7 +9,7 @@ import DAO.DepartamentoDAO;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
-import model.Departamento;
+import dto.Departamento;
 
 /**
  *
@@ -18,6 +18,7 @@ import model.Departamento;
 @Stateless
 public class DepartamentoBean implements DepartamentoBeanRemote, DepartamentoBeanLocal {
 
+    @Override
     public boolean departamentoBean(String DEPARTAMENTO) {
         boolean inserido = false;
 

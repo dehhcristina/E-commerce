@@ -5,6 +5,8 @@
  */
 package model;
 
+import dto.Produto;
+
 /**
  *
  * @author Loren

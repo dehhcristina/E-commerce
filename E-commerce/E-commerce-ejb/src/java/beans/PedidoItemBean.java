@@ -13,22 +13,21 @@ import model.PedidoItem;
  *
  * @author Débora Pinheiro
  */
-public class PedidoItemBean implements PedidoItemBeanLocal, PedidoItemBeansRemote{
-    public boolean pedidoItemBeans(int CPEDIDOITEM){
+public class PedidoItemBean implements PedidoItemBeanLocal, PedidoItemBeansRemote {
+
+    public boolean pedidoItemBean(int CPEDIDOITEM) {
         boolean inserido = false;
-        
+
         try {
             PedidoItemDAO pedidoItemDAO = new PedidoItemDAO();
             PedidoItem pedidoItemP = pedidoItemDAO.findById(CPEDIDOITEM);
             pedidoItemDAO.save(pedidoItemP);
-            
+
             inserido = true;
         } catch (Exception ex) {
             Logger.getLogger("Ocorreu um erro inesperado!");
         }
-        
-        
-        
+
         return inserido;
     }
 }

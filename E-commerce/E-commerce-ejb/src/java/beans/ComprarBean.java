@@ -20,6 +20,7 @@ import model.PedidoItem;
 @Stateless
 public class ComprarBean implements ComprarBeanRemote, ComprarBeanLocal {
 
+    @Override
     public boolean comprarBean(int pedido, int[] pedidoItem) {
         boolean comprado = false;
 

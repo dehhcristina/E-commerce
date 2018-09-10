@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+package dto;
 
-import dto.Departamento;
+import java.io.Serializable;
 
 /**
  *
  * @author Loren
  */
-public class Categoria {
+public class Categoria implements Serializable {
 
     private int CCATEGORIA;
     private String CATEGORIA;

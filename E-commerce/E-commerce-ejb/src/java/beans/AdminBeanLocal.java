@@ -5,13 +5,13 @@
  */
 package beans;
 
-import javax.ejb.Remote;
+import javax.ejb.Local;
 
 /**
  *
  * @author Débora Pinheiro
  */
-@Remote
-public interface AdminBeansRemote {
+@Local
+public interface AdminBeanLocal {
     
 }

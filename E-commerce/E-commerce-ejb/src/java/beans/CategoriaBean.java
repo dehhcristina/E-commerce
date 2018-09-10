@@ -10,7 +10,7 @@ import DAO.DepartamentoDAO;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
-import model.Categoria;
+import dto.Categoria;
 
 /**
  *
@@ -19,6 +19,7 @@ import model.Categoria;
 @Stateless
 public class CategoriaBean implements CategoriaBeanRemote, CategoriaBeanLocal {
 
+    @Override
     public boolean categoriaBean(String CATEGORIA, int DEPARTAMENTO) {
         boolean inserido = false;
 

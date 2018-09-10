@@ -9,8 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import model.Categoria;
-import model.Departamento;
+import dto.Categoria;
+import dto.Departamento;
 import util.ConnectionUtil;
 
 /**

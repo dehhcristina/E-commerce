@@ -5,13 +5,14 @@
  */
 package beans;
 
-import javax.ejb.Local;
+import javax.ejb.Remote;
 
 /**
  *
  * @author Débora Pinheiro
  */
-@Local
-public interface AdminBeansLocal {
-    
+@Remote
+public interface AdminBeanRemote {
+
+    public boolean adminBean(int CADMINISTRADOR);
 }

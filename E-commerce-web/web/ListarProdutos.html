@@ -1,0 +1,44 @@
+<html>
+    <meta charset="utf-8">
+    <title>Consulta Crédito</title>
+
+    <script type="text/javascript">
+        var URL = "http://localhost:8080/E-commerce/listarProdutos";
+        function carregarProdutos()
+        {
+            var http = new XMLHttpRequest();
+            http.onreadystatechange = function ()
+            {
+                if (this.readyState === 4 && this.status === 200) {
+                    parseJson(this.responseText);
+                }
+                if (this.readyState === 4 && this.status !== 200) {
+                    
+                    var mensagem;
+                    try {
+                        obj = JSON.parse(this.responseText)
+                        mensagem = obj.message;
+                    } catch (e) {
+                        mensagem = this.statusText;
+                    }
+                    document.getElementById("result").innerHTML = "Erro: " + mensagem;
+                }
+                if (this.readyState === 1) {
+                    document.getElementById("result").innerHTML = "Aguarde...";
+                }
+            };
+            http.open("GET", URL);
+            http.send();
+        }
+        function parseJson(jsonData) {
+            var obj = JSON.parse(jsonData);
+            document.getElementById("result")
+                    .innerHTML = obj.produtos;
+        }
+    </script>
+
+    <body onload="carregarProdutos()">
+        <div id="result"></div>
+    </body>
+
+</html>
