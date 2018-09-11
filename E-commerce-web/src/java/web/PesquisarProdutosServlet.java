@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.StringReader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import javax.ejb.EJB;
 import javax.json.Json;
@@ -51,22 +53,16 @@ public class PesquisarProdutosServlet extends HttpServlet {
         JsonReader reader = Json.createReader(new StringReader(textJSON));
         JsonObject dataJSON = reader.readObject();
         String PESQUISA;
-        JsonObject retorno;
+        String produto = "";
         PESQUISA = dataJSON.getJsonString("PESQUISA").getString();
 
         try {
-            retorno = Json.createObjectBuilder()
-                    .add("produtos", mapper.writeValueAsString(bean.pesquisarProdutos(PESQUISA)))
-                    .build();
-
+            produto = mapper.writeValueAsString(bean.pesquisarProdutos(PESQUISA));
         } catch (Exception ex) {
-            retorno = Json.createObjectBuilder()
-                    .add("message", ex.getMessage())
-                    .build();
-            response.setStatus(500);
+            Logger.getLogger(PesquisarProdutosServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        out.println(retorno.toString());
+        out.write(produto);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

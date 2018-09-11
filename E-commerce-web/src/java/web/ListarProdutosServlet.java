@@ -12,8 +12,6 @@ import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
-import javax.json.Json;
-import javax.json.JsonObject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -44,21 +42,11 @@ public class ListarProdutosServlet extends HttpServlet {
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
         ObjectMapper mapper = new ObjectMapper();
-        JsonObject retorno;
+        String produto;
 
-        try {
-            retorno = Json.createObjectBuilder()
-                    .add("produtos", mapper.writeValueAsString(bean.listarProdutos()))
-                    .build();
+        produto = mapper.writeValueAsString(bean.listarProdutos());
 
-        } catch (Exception ex) {
-            retorno = Json.createObjectBuilder()
-                    .add("message", ex.getMessage())
-                    .build();
-            response.setStatus(500);
-        }
-
-        out.println(retorno.toString());
+        out.write(produto);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
