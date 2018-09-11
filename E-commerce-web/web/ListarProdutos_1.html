@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR" dir="ltr">
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!-- O NORMALIZE.CSS deve ficar por primeiro (reset) -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href="http://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" type="text/css">
+    
+    <link rel="stylesheet" href="estilo.css">
+	<!--[if lt IE 9]>
+		<script src="script/html5shiv.min.js"></script>
+	<![endif]-->
+	<!-- DEVE ESTAR AO FINAL, DEPOIS DE QUALQUER CSS QUE ESTIVER INCORPORADO (evita o uso de prefixo em css) -->
+        <script type="text/javascript">
+            function carregarProdutos()
+        {
+            var URL = "http://localhost:8080/E-commerce/listarProdutos";
+            var http = new XMLHttpRequest();
+            http.onreadystatechange = function ()
+            {
+                if (this.readyState === 4 && this.status === 200) {
+                    parseJson(this.responseText);
+                }
+                if (this.readyState === 4 && this.status !== 200) {
+                    
+                    var mensagem;
+                    try {
+                        obj = JSON.parse(this.responseText)
+                        mensagem = obj.message;
+                    } catch (e) {
+                        mensagem = this.statusText;
+                    }
+                    document.getElementById("result").innerHTML = "Erro: " + mensagem;
+                }
+                if (this.readyState === 1) {
+                    document.getElementById("result").innerHTML = "Aguarde...";
+                }
+            };
+            http.open("GET", URL);
+            http.send();
+        }
+        
+        function pesquisarProdutos(oForm) {
+            var URL = "http://localhost:8080/E-commerce/pesquisarProdutos";
+            var formData = {};
+                formData["PESQUISA"] = oForm.PESQUISA.value;
+                var http = new XMLHttpRequest();
+                http.onreadystatechange = function ()
+                {
+                    if (this.readyState === 4 && this.status === 200) {
+                        parseJson(this.responseText);
+                    }
+                    if (this.readyState === 4 && this.status !== 200) {
+                        document.getElementById("result").innerHTML = "Erro: " + this.statusText;
+                    }
+                    if (this.readyState === 3) {
+                        document.getElementById("result").innerHTML = "Aguarde...";
+                    }
+                };
+                http.open("POST", URL);
+                http.setRequestHeader("Content-type", "application/json");
+                http.send( JSON.stringify(formData) );
+        }
+        function parseJson(jsonData) {
+            var obj = JSON.parse(jsonData);
+            console.log(obj.produtos.length);
+            document.getElementById("result")
+                    .innerHTML = obj.produtos;
+        }
+        </script>
+	<title>Compre já</title>
+  </head>
+    <body  onload="carregarProdutos()">
+	<div class="container">
+		<header class="header-main">
+        <!-- BLOCO DA ESQUERDA, CABECALHO -->
+        <div class="header-logo">
+          <img src="img/logo.png" alt="">
+        </div>
+        <!-- BLOCO DA DIREITA, CABECALHO -->
+        <div class="header-busca">
+          <!-- BUSCA -->
+          <div class="header-search">
+            <form enctype="text/plain">
+              <i class="fa fa-search"></i>
+              <input id="PESQUISA" name="busca" type="search" placeholder="O que você procura?" required>
+              <input type="button" value="Buscar" onclick="pesquisarProdutos(this.form)">
+            </form>
+          </div>
+        </div>
+		<form class="formEntra">
+			<div class="sign-in"><i class="fa fa-sign-in"></i></div>
+			<div class="entre">Entre</div>
+			<div class="cadastro">ou Cadastre-se</div>
+		</form>
+          <img class="car" src="img/carrinho.png" alt="">
+      </header>
+	  <nav class="nav-main">
+          <ul>
+            <li><a href="">Eletrodomésticos</a></li>
+            <li><a href="">Automotivo</a></li>
+            <li><a href="">Esporte e Lazer</a></li>
+            <li><a href="">TVs e Áudio</a></li>
+            <li><a href="">Movéis e Decoração</a></li>
+            <li><a href="">Telefonia</a></li>
+            <li><a href="">Informática</a></li>
+            <li><a href="">Livros</a></li>
+          </ul>
+
+      </nav>
+	  
+	  <div id="result"></div>
+	  <footer class="footer-main">
+        <div class="footer-addr">
+          <address>
+            Central de Atendimento<br>
+            Horizontina<br>
+			(55) 3537-5982<br>
+			Outras Localidades<br>
+			0800-152-5000
+          </address>
+        </div>
+        <div class="footer-support">
+          <div>Televendas<br>
+			Todas as regiões*<br>
+			5002-3690<br>
+			Vendas Corporativas<br>
+			(55) 3537-5963</div>
+        </div>
+        <div class="footer-who">
+			<p>Delo - Compras Online (2018©)</p>
+        </div>
+      </footer>
+	</div>
+        
+    </body>
+</html>

@@ -1,0 +1,134 @@
+html {
+	font:normal 14px/100% 'Varela Round', 'Lucida Sans Unicode', 'Lucida Grande', Verdana, sans-serif;
+	border:1px solid black;
+}
+
+body {
+	margin:0 0;
+}
+
+.container {
+	width:100%;
+	min-width:320px;/*A minima reslução do site*/
+	/*max-width:980px; A máxima resolução do site(desktop)*/
+}
+
+.container .header-main {
+	background-color:#292fff;
+	height:5em;
+	width:100%;
+}
+
+input {
+	outline: none;
+}
+
+a {
+	color:#333;
+	text-decoration:none;
+}
+.header-logo {
+	position:relative;
+	float:left;
+	height:4.5em;
+	width:20em;
+	overflow:hidden;/*Ocultar o que não couber*/
+	border-radius:.2em;
+} 
+
+.header-logo img {
+	width:100%;
+	position:absolute;
+	top:-15%;
+}
+.header-busca {
+	float:center;
+}
+.header-search {
+	float:center;
+}
+.header-search input[type='search'] {
+	width: 40em;
+	float:left;
+	margin-top:1.3em;
+	padding-top:.8em;
+	padding-bottom:.8em;
+	margin-left:8em;
+	border-radius:.5em;
+	border:none;
+}
+.header-search .fa-search{
+	transform: translate(-2em,1.8em);
+}
+.sign-in{
+	width: .5em;
+	padding-left: 59.5em;
+    margin-left: 13em;
+	margin-top: 1em;
+}
+.entre{
+	width: 2.5em;
+    padding-left: 60em;
+    margin-left: 14em;
+	margin-top: -1em;
+	color:white;
+}
+.cadastro {
+	width: 8em;
+    padding-left: 63em;
+    margin-left: 14em;
+    margin-top: -1em;
+	color:orange;
+}
+.nav-main ul {
+	padding:0;
+	margin:0;
+	list-style:none;
+	text-align:center;
+	background-color:#080dce;
+	height:3em;
+}
+.nav-main li {
+	display:inline-block;
+	margin:0 1%;
+	min-width:9%;
+	border-bottom:.1em solid transparent;
+	transition:.2s;
+}
+.nav-main li a {
+	display:inline-block;
+	padding:1em;
+	color:white;
+}
+.nav-main li a:hover {
+	color:orange;
+}
+.footer-main {
+	clear:both;
+	border-top:.3em solid #eee;
+	margin:1% 0;
+	padding:1% 2%;
+	background-color:#080dce;
+	height:5em;
+	color:white;
+}
+.footer-main address {
+	font-style:normal;
+}
+.footer-addr {
+	float:left;
+}
+.footer-who {
+	margin:2em;
+	text-align:center;
+}
+.footer-support {
+	float:right;
+}
+.car {
+	height: 4.5em;
+    width: 4.5em;
+	float: right;
+	margin-top:-3em;
+}
+
