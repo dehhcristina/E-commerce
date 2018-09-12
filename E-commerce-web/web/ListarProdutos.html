@@ -60,9 +60,10 @@
             function parseJson(jsonData) {
                 document.getElementById("result").innerText = "";
                 var obj = JSON.parse(jsonData);
-                var divProdutos = document.createElement("DIV"), i, qtde, produto, nome, img;
+                var divProdutos = document.createElement("DIV"), i, qtde, produto, nome, img, link;
                 divProdutos.className = "divProdutos";
                 for (i = 0, qtde = obj.length; i < qtde; i++) {
+                    link = document.createElement("A");
                     produto = document.createElement("DIV");
                     produto.id = "p" + obj[i].cproduto;
                     produto.className = "produto";
@@ -75,10 +76,11 @@
                     } else {
                         img.setAttribute("src", "img/semImagem.jpg");
                     }
+                    link.setAttribute("href", "http://localhost:8080/E-commerce/umProduto?cproduto=" + obj[i].cproduto);
                     produto.appendChild(img);
                     produto.appendChild(nome);
-                    
-                    divProdutos.appendChild(produto);
+                    link.appendChild(produto);
+                    divProdutos.appendChild(link);
                 }
                 document.getElementById("result")
                         .appendChild(divProdutos);

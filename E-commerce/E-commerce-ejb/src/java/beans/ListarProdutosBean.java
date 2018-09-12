@@ -47,4 +47,18 @@ public class ListarProdutosBean implements ListarProdutosBeanLocal, ListarProdut
 
         return produto;
     }
+
+    @Override
+    public Produto umProduto(int CPRODUTO) throws Exception {
+        Produto produto = new Produto();
+
+        try {
+            ProdutoDAO produtoDAO = new ProdutoDAO();
+            produto = produtoDAO.findById(CPRODUTO);
+        } catch (Exception ex) {
+            Logger.getLogger(ListarProdutosBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return produto;
+    }
 }

@@ -24,6 +24,10 @@
         <servlet-name>PesquisarProdutosServlet</servlet-name>
         <servlet-class>web.PesquisarProdutosServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UmProdutoServlet</servlet-name>
+        <servlet-class>web.UmProdutoServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MarcaServlet</servlet-name>
         <url-pattern>/marca</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>PesquisarProdutosServlet</servlet-name>
         <url-pattern>/pesquisarProdutos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UmProdutoServlet</servlet-name>
+        <url-pattern>/umProduto</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

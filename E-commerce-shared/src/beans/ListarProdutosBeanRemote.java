@@ -19,4 +19,6 @@ public interface ListarProdutosBeanRemote {
     public List<Produto> listarProdutos() throws Exception;
 
     public List<Produto> pesquisarProdutos(String PESQUISA) throws Exception;
+
+    public Produto umProduto(int CPRODUTO) throws Exception;
 }
