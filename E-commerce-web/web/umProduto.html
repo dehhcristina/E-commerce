@@ -42,9 +42,30 @@ and open the template in the editor.
             function parseJson(jsonData) {
                 document.getElementById("result").innerText = "";
                 var obj = JSON.parse(jsonData);
+                var divProdutos = document.createElement("DIV"), produto, nome, img, valor;
+                var divProduto = document.createElement("DIV");
+                    produto = document.createElement("DIV");
+                    produto.id = "p" + obj.cproduto;
+                    produto.className = "umProduto";
+                    nome = document.createElement("DIV");
+                    nome.className = "umNome";
+                    nome.innerText = obj.produto;
+                    valor = document.createElement("SPAN");
+                    valor.className = "umValor";
+                    valor.innerText = "R$" + obj.valor;
+                    img = document.createElement("IMG");
+                    if (obj.imagem !== null && obj.imagem !== "") {
+                        img.setAttribute("src", obj.imagem.replace(/^.*\\/, ""));
+                    } else {
+                        img.setAttribute("src", "img/semImagem.jpg");
+                    }
+                    produto.appendChild(img);
+                    produto.appendChild(nome);
+                    divProduto.appendChild(produto);
+                    divProduto.appendChild(valor);
+                    divProdutos.appendChild(divProduto);
                 document.querySelector("title").innerText = obj.produto;
-                document.getElementById("result")
-                        .innerHTML = jsonData;
+                document.getElementById("result").appendChild(divProdutos);
             }
     </script>
     </head>

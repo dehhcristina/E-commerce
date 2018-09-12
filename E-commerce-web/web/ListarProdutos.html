@@ -42,7 +42,7 @@
             function pesquisarProdutos(oForm) {
                 var URL = "http://localhost:8080/E-commerce/pesquisarProdutos";
                 var formData = {};
-                formData["PESQUISA"] = oForm.PESQUISA.value;
+                formData["PESQUISA"] = document.querySelector("#PESQUISA").value;
                 var http = new XMLHttpRequest();
                 http.onreadystatechange = function ()
                 {
@@ -60,7 +60,8 @@
             function parseJson(jsonData) {
                 document.getElementById("result").innerText = "";
                 var obj = JSON.parse(jsonData);
-                var divProdutos = document.createElement("DIV"), i, qtde, produto, nome, img, link;
+                var divProdutos = document.createElement("DIV"), i, qtde, produto, nome, img, link, btnComprar, valor;
+                var divProduto = document.createElement("DIV");
                 divProdutos.className = "divProdutos";
                 for (i = 0, qtde = obj.length; i < qtde; i++) {
                     link = document.createElement("A");
@@ -70,6 +71,15 @@
                     nome = document.createElement("DIV");
                     nome.className = "nome";
                     nome.innerText = obj[i].produto;
+                    valor = document.createElement("SPAN");
+                    valor.className = "valor";
+                    valor.innerText = "R$" + obj[i].valor;
+                    btnComprar = document.createElement("INPUT");
+                    btnComprar.className = "btnComprar";
+                    btnComprar.setAttribute("type", "button");
+                    btnComprar.id = "pc" + obj[i].cproduto;
+                    btnComprar.setAttribute("value", "Comprar");
+                    btnComprar.addEventListener("click", adicionarCarrinho);
                     img = document.createElement("IMG");
                     if (obj[i].imagem !== null && obj[i].imagem !== "") {
                         img.setAttribute("src", obj[i].imagem.replace(/^.*\\/, ""));
@@ -80,10 +90,16 @@
                     produto.appendChild(img);
                     produto.appendChild(nome);
                     link.appendChild(produto);
-                    divProdutos.appendChild(link);
+                    divProduto.appendChild(link);
+                    divProduto.appendChild(btnComprar);
+                    divProduto.appendChild(valor);
+                    divProdutos.appendChild(divProduto);
                 }
                 document.getElementById("result")
                         .appendChild(divProdutos);
+            }
+            function adicionarCarrinho() {
+
             }
         </script>
         <title>Compre já</title>
@@ -102,9 +118,9 @@
                         <form enctype="text/plain">
                             <i class="fa fa-search"></i>
                             <input id="PESQUISA" name="busca" type="search" placeholder="O que você procura?" required>
-                            <input type="button" id="buscar" value="Buscar" onclick="pesquisarProdutos(this.form)">
                         </form>
                     </div>
+                    <input type="button" class="buscar" id="buscar" value="Buscar" onclick="pesquisarProdutos(this.form)">
                 </div>
                 <form class="formEntra">
                     <div class="sign-in"><i class="fa fa-sign-in"></i></div>
