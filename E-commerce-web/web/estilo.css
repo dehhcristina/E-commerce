@@ -1,134 +1,152 @@
 html {
-	font:normal 14px/100% 'Varela Round', 'Lucida Sans Unicode', 'Lucida Grande', Verdana, sans-serif;
-	border:1px solid black;
+    font:normal 14px/100% 'Varela Round', 'Lucida Sans Unicode', 'Lucida Grande', Verdana, sans-serif;
+    border:1px solid black;
 }
 
 body {
-	margin:0 0;
+    margin:0 0;
 }
 
 .container {
-	width:100%;
-	min-width:320px;/*A minima reslução do site*/
-	/*max-width:980px; A máxima resolução do site(desktop)*/
+    width:100%;
+    min-width:320px;/*A minima resluÃ§Ã£o do site*/
+    /*max-width:980px; A mÃ¡xima resoluÃ§Ã£o do site(desktop)*/
 }
 
 .container .header-main {
-	background-color:#292fff;
-	height:5em;
-	width:100%;
+    background-color:#292fff;
+    height:5em;
+    width:100%;
 }
 
 input {
-	outline: none;
+    outline: none;
 }
 
 a {
-	color:#333;
-	text-decoration:none;
+    color:#333;
+    text-decoration:none;
 }
 .header-logo {
-	position:relative;
-	float:left;
-	height:4.5em;
-	width:20em;
-	overflow:hidden;/*Ocultar o que não couber*/
-	border-radius:.2em;
+    position:relative;
+    float:left;
+    height:4.5em;
+    width:20em;
+    overflow:hidden;/*Ocultar o que nÃ£o couber*/
+    border-radius:.2em;
 } 
 
 .header-logo img {
-	width:100%;
-	position:absolute;
-	top:-15%;
+    width:100%;
+    position:absolute;
+    top:-15%;
 }
-.header-busca {
-	float:center;
+.produto {
+    text-align: center;
+    border: 1px solid gray;
+    width: 25%;
+    float: left;
+    height: 9.5em;
+    margin-left: .5%;
+    margin-top: 1%;
 }
-.header-search {
-	float:center;
+.produto img {
+    width: 25%;
+    margin-bottom: 5%;
+}
+.nome {
+    margin-top: 1%;
+}
+#result {
+    overflow: hidden;
+    width: 80%;
+    margin: 0 auto;
+    height: 31.8em;
+}
+#buscar {
+    cursor: pointer;
 }
 .header-search input[type='search'] {
-	width: 40em;
-	float:left;
-	margin-top:1.3em;
-	padding-top:.8em;
-	padding-bottom:.8em;
-	margin-left:8em;
-	border-radius:.5em;
-	border:none;
+    width: 40em;
+    float:left;
+    margin-top:1.3em;
+    padding-top:.8em;
+    padding-bottom:.8em;
+    margin-left:8em;
+    border-radius:.5em;
+    border:none;
 }
 .header-search .fa-search{
-	transform: translate(-2em,1.8em);
+    transform: translate(-2em,1.8em);
 }
 .sign-in{
-	width: .5em;
-	padding-left: 59.5em;
+    width: .5em;
+    padding-left: 59.5em;
     margin-left: 13em;
-	margin-top: 1em;
+    margin-top: 1em;
 }
 .entre{
-	width: 2.5em;
+    width: 2.5em;
     padding-left: 60em;
     margin-left: 14em;
-	margin-top: -1em;
-	color:white;
+    margin-top: -1em;
+    color:white;
 }
 .cadastro {
-	width: 8em;
+    width: 8em;
     padding-left: 63em;
     margin-left: 14em;
     margin-top: -1em;
-	color:orange;
+    color:orange;
 }
 .nav-main ul {
-	padding:0;
-	margin:0;
-	list-style:none;
-	text-align:center;
-	background-color:#080dce;
-	height:3em;
+    padding:0;
+    margin:0;
+    list-style:none;
+    text-align:center;
+    background-color:#080dce;
+    height:3em;
 }
 .nav-main li {
-	display:inline-block;
-	margin:0 1%;
-	min-width:9%;
-	border-bottom:.1em solid transparent;
-	transition:.2s;
+    display:inline-block;
+    margin:0 1%;
+    min-width:9%;
+    border-bottom:.1em solid transparent;
+    transition:.2s;
 }
 .nav-main li a {
-	display:inline-block;
-	padding:1em;
-	color:white;
+    display:inline-block;
+    padding:1em;
+    color:white;
 }
 .nav-main li a:hover {
-	color:orange;
+    color:orange;
 }
 .footer-main {
-	clear:both;
-	border-top:.3em solid #eee;
-	margin:1% 0;
-	padding:1% 2%;
-	background-color:#080dce;
-	height:5em;
-	color:white;
+    clear:both;
+    border-top:.3em solid #eee;
+    padding:1% 2%;
+    background-color:#080dce;
+    height:5em;
+    color:white;
 }
 .footer-main address {
-	font-style:normal;
+    font-style:normal;
 }
 .footer-addr {
-	float:left;
+    float:left;
 }
 .footer-who {
-	margin:2em;
-	text-align:center;
+    margin:2em;
+    text-align:center;
 }
 .footer-support {
-	float:right;
+    float:right;
 }
 .car {
-	height: 4.5em;
+    height: 4.5em;
     width: 4.5em;
-	float: right;
-	margin-top:-3em;
+    float: right;
+    margin-top:-3em;
 }
 

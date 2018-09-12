@@ -60,15 +60,22 @@
             function parseJson(jsonData) {
                 document.getElementById("result").innerText = "";
                 var obj = JSON.parse(jsonData);
-                var divProdutos = document.createElement("DIV"), i, qtde, produto, nome;
+                var divProdutos = document.createElement("DIV"), i, qtde, produto, nome, img;
                 divProdutos.className = "divProdutos";
                 for (i = 0, qtde = obj.length; i < qtde; i++) {
                     produto = document.createElement("DIV");
                     produto.id = "p" + obj[i].cproduto;
                     produto.className = "produto";
-                    nome = document.createElement("SPAN");
+                    nome = document.createElement("DIV");
                     nome.className = "nome";
                     nome.innerText = obj[i].produto;
+                    img = document.createElement("IMG");
+                    if (obj[i].imagem !== null && obj[i].imagem !== "") {
+                        img.setAttribute("src", obj[i].imagem.replace(/^.*\\/, ""));
+                    } else {
+                        img.setAttribute("src", "img/semImagem.jpg");
+                    }
+                    produto.appendChild(img);
                     produto.appendChild(nome);
                     
                     divProdutos.appendChild(produto);
@@ -93,7 +100,7 @@
                         <form enctype="text/plain">
                             <i class="fa fa-search"></i>
                             <input id="PESQUISA" name="busca" type="search" placeholder="O que você procura?" required>
-                            <input type="button" value="Buscar" onclick="pesquisarProdutos(this.form)">
+                            <input type="button" id="buscar" value="Buscar" onclick="pesquisarProdutos(this.form)">
                         </form>
                     </div>
                 </div>
