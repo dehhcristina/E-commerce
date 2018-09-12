@@ -32,9 +32,16 @@ public class ProdutoDAO {
     public Produto findById(int CPRODUTO) throws Exception {
         try {
             Produto produto = new Produto();
-            Marca marca = new Marca();
-            Categoria categoria = new Categoria();
-            PreparedStatement p = connection.prepareStatement("SELECT * FROM PRODUTO WHERE CPRODUTO=?");
+            String SQL = " SELECT PRODUTO.*,"
+                    + "        MARCA.MARCA,"
+                    + "        CATEGORIA.CATEGORIA,"
+                    + "        DEPARTAMENTO.*"
+                    + " FROM PRODUTO"
+                    + " INNER JOIN MARCA ON (MARCA.CMARCA = PRODUTO.CMARCA)"
+                    + " INNER JOIN CATEGORIA ON (CATEGORIA.CCATEGORIA = PRODUTO.CCATEGORIA)"
+                    + " INNER JOIN DEPARTAMENTO ON (DEPARTAMENTO.CDEPARTAMENTO = CATEGORIA.CDEPARTAMENTO)"
+                    + "WHERE PRODUTO.CPRODUTO=?";
+            PreparedStatement p = connection.prepareStatement(SQL);
             p.setInt(1, CPRODUTO);
 
             ResultSet rs = p.executeQuery();
@@ -48,9 +55,20 @@ public class ProdutoDAO {
                 produto.setFICHA(rs.getString("FICHA"));
                 produto.setDESCONTO(rs.getDouble("DESCONTO"));
                 produto.setESTOQUE(rs.getInt("ESTOQUE"));
+
+                Marca marca = new Marca();
                 marca.setCMARCA(rs.getInt("CMARCA"));
+                marca.setMARCA(rs.getString("MARCA"));
                 produto.setCMARCA(marca);
+
+                Departamento departamento = new Departamento();
+                departamento.setCDEPARTAMENTO(rs.getInt("CDEPARTAMENTO"));
+                departamento.setDEPARTAMENTO(rs.getString("DEPARTAMENTO"));
+
+                Categoria categoria = new Categoria();
                 categoria.setCCATEGORIA(rs.getInt("CCATEGORIA"));
+                categoria.setCATEGORIA(rs.getString("CATEGORIA"));
+                categoria.setCDEPARTAMENTO(departamento);
                 produto.setCCATEGORIA(categoria);
             }
             return produto;

@@ -1,22 +1,23 @@
 <!DOCTYPE html>
-<html lang="pt-BR" dir="ltr">
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1">
-        <!-- O NORMALIZE.CSS deve ficar por primeiro (reset) -->
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <link href="http://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" type="text/css">
 
         <link rel="stylesheet" href="estilo.css">
-        <!--[if lt IE 9]>
-                <script src="script/html5shiv.min.js"></script>
-        <![endif]-->
-        <!-- DEVE ESTAR AO FINAL, DEPOIS DE QUALQUER CSS QUE ESTIVER INCORPORADO (evita o uso de prefixo em css) -->
         <script type="text/javascript">
             function carregarProdutos()
             {
-                var URL = "http://localhost:8080/E-commerce/listarProdutos";
+                var URL = "http://localhost:8080/E-commerce/umProduto" + window.location.search;
                 var http = new XMLHttpRequest();
                 http.onreadystatechange = function ()
                 {
@@ -38,57 +39,16 @@
                 http.open("GET", URL);
                 http.send();
             }
-
-            function pesquisarProdutos(oForm) {
-                var URL = "http://localhost:8080/E-commerce/pesquisarProdutos";
-                var formData = {};
-                formData["PESQUISA"] = oForm.PESQUISA.value;
-                var http = new XMLHttpRequest();
-                http.onreadystatechange = function ()
-                {
-                    if (this.readyState === 4 && this.status === 200) {
-                        parseJson(this.responseText);
-                    }
-                    if (this.readyState === 4 && this.status !== 200) {
-                        document.getElementById("result").innerHTML = "Erro: " + this.statusText;
-                    }
-                };
-                http.open("POST", URL);
-                http.setRequestHeader("Content-type", "application/json");
-                http.send(JSON.stringify(formData));
-            }
             function parseJson(jsonData) {
                 document.getElementById("result").innerText = "";
-                var obj = JSON.parse(jsonData);
-                var divProdutos = document.createElement("DIV"), i, qtde, produto, nome, img, link;
-                divProdutos.className = "divProdutos";
-                for (i = 0, qtde = obj.length; i < qtde; i++) {
-                    link = document.createElement("A");
-                    produto = document.createElement("DIV");
-                    produto.id = "p" + obj[i].cproduto;
-                    produto.className = "produto";
-                    nome = document.createElement("DIV");
-                    nome.className = "nome";
-                    nome.innerText = obj[i].produto;
-                    img = document.createElement("IMG");
-                    if (obj[i].imagem !== null && obj[i].imagem !== "") {
-                        img.setAttribute("src", obj[i].imagem.replace(/^.*\\/, ""));
-                    } else {
-                        img.setAttribute("src", "img/semImagem.jpg");
-                    }
-                    link.setAttribute("href", "http://localhost:8080/E-commerce/umProduto.html?cproduto=" + obj[i].cproduto);
-                    produto.appendChild(img);
-                    produto.appendChild(nome);
-                    link.appendChild(produto);
-                    divProdutos.appendChild(link);
-                }
+                var obj = jsonData;
+                
                 document.getElementById("result")
-                        .appendChild(divProdutos);
+                        .innerHTML = obj;
             }
-        </script>
-        <title>Compre já</title>
+    </script>
     </head>
-    <body  onload="carregarProdutos()">
+    <body onload="carregarProdutos()">
         <div class="container">
             <header class="header-main">
                 <!-- BLOCO DA ESQUERDA, CABECALHO -->
@@ -150,6 +110,5 @@
                 </div>
             </footer>
         </div>
-
     </body>
 </html>
