@@ -90,10 +90,10 @@
                     link.setAttribute("href", "http://localhost:8080/E-commerce/umProduto.html?cproduto=" + obj[i].cproduto);
                     produto.appendChild(img);
                     produto.appendChild(nome);
+                    produto.appendChild(valor);
+                    produto.appendChild(btnComprar);
                     link.appendChild(produto);
                     divProduto.appendChild(link);
-                    divProduto.appendChild(btnComprar);
-                    divProduto.appendChild(valor);
                     divProdutos.appendChild(divProduto);
                 }
                 document.getElementById("result")
@@ -110,7 +110,7 @@
                 sessionStorage.setItem("carrinho", JSON.stringify(carrinho));
             }
         </script>
-        <title>Compre já</title>
+        <title>Delo</title>
     </head>
     <body  onload="carregarProdutos()">
         <div class="container">

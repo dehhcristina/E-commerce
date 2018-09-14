@@ -7,9 +7,11 @@ package beans;
 
 import DAO.PedidoDAO;
 import DAO.PedidoItemDAO;
+import dto.Produto;
 import java.sql.SQLException;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
+import model.Cliente;
 import model.Pedido;
 import model.PedidoItem;
 
@@ -21,19 +23,28 @@ import model.PedidoItem;
 public class ComprarBean implements ComprarBeanRemote, ComprarBeanLocal {
 
     @Override
-    public boolean comprarBean(int pedido, int[] pedidoItem) {
+    public boolean comprarBean(int CCLIENTE, int CPEDIDO, int CPRODUTO, int QTDE) {
         boolean comprado = false;
 
         try {
             PedidoDAO pedidoDAO = new PedidoDAO();
-            Pedido pedidoP = pedidoDAO.findById(pedido);
-            pedidoDAO.save(pedidoP);
+            Pedido pedido = new Pedido();
+            Cliente cliente = new Cliente();
+            cliente.setCCLIENTE(CCLIENTE);
+            pedido.setCCLIENTE(cliente);
+            pedidoDAO.save(pedido);
 
             PedidoItemDAO pedidoItemDAO = new PedidoItemDAO();
-            for (int i = 0; i <= pedidoItem.length; i++) {
-                PedidoItem pedidoItemP = pedidoItemDAO.findById(pedidoItem[i]);
-                pedidoItemDAO.save(pedidoItemP);
-            }
+            PedidoItem pedidoItem = new PedidoItem();
+            Produto produto = new Produto();
+
+            produto.setCPRODUTO(CPRODUTO);
+            pedidoItem.setCPRODUTO(produto);
+            pedido.setCPEDIDO(CPEDIDO);
+            pedidoItem.setCPEDIDO(pedido);
+            pedidoItem.setQTDE(QTDE);
+            pedidoItemDAO.save(pedidoItem);
+
             comprado = true;
         } catch (SQLException ex) {
             Logger.getLogger("Ocorreu um erro inesperado!");

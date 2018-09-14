@@ -14,5 +14,5 @@ import javax.ejb.Remote;
 @Remote
 public interface ComprarBeanRemote {
 
-    public boolean comprarBean(int pedido, int[] pedidoItem);
+    public boolean comprarBean(int CCLIENTE, int CPEDIDO, int CPRODUTO, int QTDE);
 }

@@ -154,14 +154,36 @@
             }
             
             function comprar() {
-                var comprados = {"produtos": [], "qtde": []};;
+                var URL = "http://localhost:8080/E-commerce/comprar";
+                var comprados = {};
                 
                 var qtde = document.querySelectorAll(".qtdeProd");
                 for (var i = 0; i < qtde.length; i++) {
-                    comprados.produtos.push(qtde[i].codigo);
-                    comprados.qtde.push(qtde[i].qtde);
+                    comprados["produtos"] = qtde[i].codigo;
+                    comprados["qtde"] = Number(qtde[i].value);
                 }
+                comprados["cliente"] = 1;
                 console.log(comprados);
+                var http = new XMLHttpRequest();
+                http.onreadystatechange = function ()
+                {
+                    if (this.readyState === 4 && this.status === 200) {
+                        parseJson(this.responseText);
+                    }
+                    if (this.readyState === 4 && this.status !== 200) {
+                        document.getElementById("result").innerHTML = "Erro: " + this.statusText;
+                    }
+                    if (this.readyState === 3) {
+                        document.getElementById("result").innerHTML = "Aguarde...";
+                    }
+                };
+                http.open("POST", URL);
+                http.setRequestHeader("Content-type", "application/json");
+                http.send(JSON.stringify(comprados));
+            }
+            function parseJson(jsonData) {
+                var obj = JSON.parse(jsonData);
+                document.getElementById("result").innerHTML = "" + obj.mensagem;
             }
         </script>
         <title>Compre já</title>

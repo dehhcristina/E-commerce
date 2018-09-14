@@ -5,8 +5,6 @@
  */
 package model;
 
-import java.util.Date;
-
 /**
  *
  * @author Loren
@@ -14,14 +12,7 @@ import java.util.Date;
 public class Pedido {
 
     private int CPEDIDO;
-    private Estado UF;
-    private Date DATA;
     private Cliente CCLIENTE;
-    private String RUA;
-    private int NUMERO;
-    private String BAIRRO;
-    private String CIDADE;
-    private double TOTAL;
 
     public int getCPEDIDO() {
         return CPEDIDO;
@@ -31,22 +22,6 @@ public class Pedido {
         this.CPEDIDO = CPEDIDO;
     }
 
-    public Estado getUF() {
-        return UF;
-    }
-
-    public void setUF(Estado UF) {
-        this.UF = UF;
-    }
-
-    public Date getDATA() {
-        return DATA;
-    }
-
-    public void setDATA(Date DATA) {
-        this.DATA = DATA;
-    }
-
     public Cliente getCCLIENTE() {
         return CCLIENTE;
     }
@@ -54,45 +29,4 @@ public class Pedido {
     public void setCCLIENTE(Cliente CCLIENTE) {
         this.CCLIENTE = CCLIENTE;
     }
-
-    public String getRUA() {
-        return RUA;
-    }
-
-    public void setRUA(String RUA) {
-        this.RUA = RUA;
-    }
-
-    public int getNUMERO() {
-        return NUMERO;
-    }
-
-    public void setNUMERO(int NUMERO) {
-        this.NUMERO = NUMERO;
-    }
-
-    public String getBAIRRO() {
-        return BAIRRO;
-    }
-
-    public void setBAIRRO(String BAIRRO) {
-        this.BAIRRO = BAIRRO;
-    }
-
-    public String getCIDADE() {
-        return CIDADE;
-    }
-
-    public void setCIDADE(String CIDADE) {
-        this.CIDADE = CIDADE;
-    }
-
-    public double getTOTAL() {
-        return TOTAL;
-    }
-
-    public void setTOTAL(double TOTAL) {
-        this.TOTAL = TOTAL;
-    }
-
 }

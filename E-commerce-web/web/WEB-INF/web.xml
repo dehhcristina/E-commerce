@@ -28,6 +28,10 @@
         <servlet-name>UmProdutoServlet</servlet-name>
         <servlet-class>web.UmProdutoServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ComprarServlet</servlet-name>
+        <servlet-class>web.ComprarServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MarcaServlet</servlet-name>
         <url-pattern>/marca</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>UmProdutoServlet</servlet-name>
         <url-pattern>/umProduto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ComprarServlet</servlet-name>
+        <url-pattern>/comprar</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
