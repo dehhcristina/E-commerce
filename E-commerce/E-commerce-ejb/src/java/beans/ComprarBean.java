@@ -23,7 +23,7 @@ import model.PedidoItem;
 public class ComprarBean implements ComprarBeanRemote, ComprarBeanLocal {
 
     @Override
-    public boolean comprarBean(int CCLIENTE, int CPEDIDO, int CPRODUTO, int QTDE) {
+    public boolean comprarBean(int CCLIENTE, int CPRODUTO, int QTDE) {
         boolean comprado = false;
 
         try {
@@ -40,7 +40,8 @@ public class ComprarBean implements ComprarBeanRemote, ComprarBeanLocal {
 
             produto.setCPRODUTO(CPRODUTO);
             pedidoItem.setCPRODUTO(produto);
-            pedido.setCPEDIDO(CPEDIDO);
+            pedido = new Pedido();
+            pedido.setCPEDIDO(3);
             pedidoItem.setCPEDIDO(pedido);
             pedidoItem.setQTDE(QTDE);
             pedidoItemDAO.save(pedidoItem);

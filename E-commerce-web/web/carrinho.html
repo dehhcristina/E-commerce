@@ -51,6 +51,7 @@
                     btnRemover.addEventListener("click", removerCarrinho);
                     qtdeProd = document.createElement("INPUT");
                     qtdeProd.setAttribute("type", "number");
+                    qtdeProd.setAttribute("placeholder", "Quantidade");
                     qtdeProd.codigo = obj.produtos[i].cproduto;
                     qtdeProd.className = "qtdeProd";
                     qtdeProd.setAttribute("value", "1");
@@ -63,11 +64,11 @@
                     link.setAttribute("href", "http://localhost:8080/E-commerce/umProduto.html?cproduto=" + obj.produtos[i].cproduto);
                     produto.appendChild(img);
                     produto.appendChild(nome);
+                    produto.appendChild(valor);
+                    produto.appendChild(qtdeProd);
+                    produto.appendChild(btnRemover);
                     link.appendChild(produto);
                     divProduto.appendChild(link);
-                    divProduto.appendChild(valor);
-                    divProduto.appendChild(qtdeProd);
-                    divProduto.appendChild(btnRemover);
                     divProdutos.appendChild(divProduto);
                 }
                 document.getElementById("result")

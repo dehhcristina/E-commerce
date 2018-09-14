@@ -53,7 +53,7 @@ public class ComprarServlet extends HttpServlet {
             int cProduto = dataJSON.getJsonNumber("produtos").intValue();
             int cCliente = dataJSON.getJsonNumber("cliente").intValue();
             int qtde = dataJSON.getJsonNumber("qtde").intValue();
-            resposta = beanComprar.comprarBean(cCliente, 1, cProduto, qtde) ? "Salvo com sucesso!" : "Ops, algo deu errado!";
+            resposta = beanComprar.comprarBean(cCliente, cProduto, qtde) ? "Salvo com sucesso!" : "Ops, algo deu errado!";
             JsonObject retorno = Json.createObjectBuilder()
                     .add("mensagem", resposta)
                     .build();
