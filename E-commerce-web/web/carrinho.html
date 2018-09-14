@@ -16,27 +16,62 @@
         <script type="text/javascript">
             function carregarProdutos()
             {
-                var URL = "http://localhost:8080/E-commerce/listarProdutos";
-                var http = new XMLHttpRequest();
-                http.onreadystatechange = function ()
-                {
-                    if (this.readyState === 4 && this.status === 200) {
-                        parseJson(this.responseText);
+                document.getElementById("result")
+                        .innerHTML = "";
+                var finalizarCompra = document.createElement("INPUT");
+                finalizarCompra.setAttribute("value", "Finalizar Compra");
+                finalizarCompra.className = "finalizarCompra";
+                finalizarCompra.setAttribute("type", "button");
+                finalizarCompra.addEventListener("click", comprar);
+                document.getElementById("result")
+                        .appendChild(finalizarCompra);
+                var obj = JSON.parse(sessionStorage.carrinho);
+                var divProdutos = document.createElement("DIV"), i, qtde, qtdeProd, produto, nome, img, link, btnRemover, valor;
+                var divProduto = document.createElement("DIV");
+                divProdutos.className = "divProdutos";
+                for (i = 0, qtde = obj.produtos.length; i < qtde; i++) {
+                    link = document.createElement("A");
+                    produto = document.createElement("DIV");
+                    produto.id = "p" + obj.produtos[i].cproduto;
+                    produto.codigo = obj.produtos[i].cproduto;
+                    produto.className = "produto";
+                    nome = document.createElement("DIV");
+                    nome.className = "nome";
+                    nome.innerText = obj.produtos[i].produto;
+                    valor = document.createElement("SPAN");
+                    valor.className = "valor";
+                    valor.innerText = "R$" + obj.produtos[i].valor;
+                    btnRemover = document.createElement("INPUT");
+                    btnRemover.className = "btnComprar";
+                    btnRemover.setAttribute("type", "button");
+                    btnRemover.id = "pc" + obj.produtos[i].cproduto;
+                    btnRemover.codigo = obj.produtos[i].cproduto;
+                    btnRemover.setAttribute("value", "Remover");
+                    btnRemover.dados = obj.produtos[i];
+                    btnRemover.addEventListener("click", removerCarrinho);
+                    qtdeProd = document.createElement("INPUT");
+                    qtdeProd.setAttribute("type", "number");
+                    qtdeProd.codigo = obj.produtos[i].cproduto;
+                    qtdeProd.className = "qtdeProd";
+                    qtdeProd.setAttribute("value", "1");
+                    img = document.createElement("IMG");
+                    if (obj.produtos[i].imagem !== null && obj.produtos[i].imagem !== "") {
+                        img.setAttribute("src", obj.produtos[i].imagem.replace(/^.*\\/, ""));
+                    } else {
+                        img.setAttribute("src", "img/semImagem.jpg");
                     }
-                    if (this.readyState === 4 && this.status !== 200) {
-
-                        var mensagem;
-                        try {
-                            obj = JSON.parse(this.responseText)
-                            mensagem = obj.message;
-                        } catch (e) {
-                            mensagem = this.statusText;
-                        }
-                        document.getElementById("result").innerHTML = "Erro: " + mensagem;
-                    }
-                };
-                http.open("GET", URL);
-                http.send();
+                    link.setAttribute("href", "http://localhost:8080/E-commerce/umProduto.html?cproduto=" + obj.produtos[i].cproduto);
+                    produto.appendChild(img);
+                    produto.appendChild(nome);
+                    link.appendChild(produto);
+                    divProduto.appendChild(link);
+                    divProduto.appendChild(valor);
+                    divProduto.appendChild(qtdeProd);
+                    divProduto.appendChild(btnRemover);
+                    divProdutos.appendChild(divProduto);
+                }
+                document.getElementById("result")
+                        .appendChild(divProdutos);
             }
 
             function pesquisarProdutos(oForm) {
@@ -99,15 +134,34 @@
                 document.getElementById("result")
                         .appendChild(divProdutos);
             }
-            function adicionarCarrinho() {
+            function removerCarrinho(e) {
                 var carrinho;
+                var cProduto = e.target.codigo;
                 if (sessionStorage.carrinho) {
                     carrinho = JSON.parse(sessionStorage.carrinho);
-                } else {
-                    carrinho = {"produtos": []};
+                    
+                    var objRemovido = carrinho.produtos.find(function(obj, idx, arr) {
+                        if (obj.cproduto == cProduto) {
+                        arr.splice(idx, 1);
+                        return true;
+                    } else {
+                        return false;
+                    }
+                    })
+                    sessionStorage.setItem("carrinho", JSON.stringify(carrinho));
+                    carregarProdutos();
                 }
-                carrinho.produtos.push(this.dados);
-                sessionStorage.setItem("carrinho", JSON.stringify(carrinho));
+            }
+            
+            function comprar() {
+                var comprados = {"produtos": [], "qtde": []};;
+                
+                var qtde = document.querySelectorAll(".qtdeProd");
+                for (var i = 0; i < qtde.length; i++) {
+                    comprados.produtos.push(qtde[i].codigo);
+                    comprados.qtde.push(qtde[i].qtde);
+                }
+                console.log(comprados);
             }
         </script>
         <title>Compre já</title>
@@ -150,7 +204,8 @@
 
             </nav>
 
-            <div id="result"></div>
+            <div id="result">
+            </div>
             <footer class="footer-main">
                 <div class="footer-addr">
                     <address>

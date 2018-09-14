@@ -42,7 +42,7 @@ and open the template in the editor.
             function parseJson(jsonData) {
                 document.getElementById("result").innerText = "";
                 var obj = JSON.parse(jsonData);
-                var divProdutos = document.createElement("DIV"), produto, nome, img, valor;
+                var divProdutos = document.createElement("DIV"), produto, nome, img, valor, descricao, desconto, ficha;
                 var divProduto = document.createElement("DIV");
                     produto = document.createElement("DIV");
                     produto.id = "p" + obj.cproduto;
@@ -50,9 +50,20 @@ and open the template in the editor.
                     nome = document.createElement("DIV");
                     nome.className = "umNome";
                     nome.innerText = obj.produto;
+                    descricao = document.createElement("DIV");
+                    descricao.className = "descricao";
+                    ficha = document.createElement("DIV");
+                    ficha.className = "ficha";
+                    ficha.innerText = obj.ficha;
                     valor = document.createElement("SPAN");
                     valor.className = "umValor";
                     valor.innerText = "R$" + obj.valor;
+                    btnComprar = document.createElement("INPUT");
+                    btnComprar.className = "umBtnComprar";
+                    btnComprar.setAttribute("type", "button");
+                    btnComprar.id = "pc" + obj.cproduto;
+                    btnComprar.setAttribute("value", "Comprar");
+                    btnComprar.dados = obj;
                     img = document.createElement("IMG");
                     if (obj.imagem !== null && obj.imagem !== "") {
                         img.setAttribute("src", obj.imagem.replace(/^.*\\/, ""));
@@ -60,9 +71,11 @@ and open the template in the editor.
                         img.setAttribute("src", "img/semImagem.jpg");
                     }
                     produto.appendChild(img);
-                    produto.appendChild(nome);
+                    divProduto.appendChild(nome);
                     divProduto.appendChild(produto);
                     divProduto.appendChild(valor);
+                    divProduto.appendChild(btnComprar);
+                    divProduto.appendChild(ficha);
                     divProdutos.appendChild(divProduto);
                 document.querySelector("title").innerText = obj.produto;
                 document.getElementById("result").appendChild(divProdutos);
@@ -81,8 +94,7 @@ and open the template in the editor.
                     <!-- BUSCA -->
                     <div class="header-search">
                         <form enctype="text/plain">
-                            <i class="fa fa-search"></i>
-                            <input id="PESQUISA" name="busca" type="search" placeholder="O que você procura?" required>
+                            <input id="PESQUISA" name="busca" type="search" placeholder="O que você procura?" required="">
                         </form>
                     </div>
                     <input type="button" class="buscar" id="buscar" value="Buscar" onclick="pesquisarProdutos(this.form)">
@@ -92,7 +104,7 @@ and open the template in the editor.
                     <div class="entre">Entre</div>
                     <div class="cadastro">ou Cadastre-se</div>
                 </form>
-                <img class="car" src="img/carrinho.png" alt="">
+                <a href="http://localhost:8080/E-commerce/carrinho.html"> <img class="car" src="img/carrinho.png" alt=""></a>
             </header>
             <nav class="nav-main">
                 <ul>
@@ -107,8 +119,8 @@ and open the template in the editor.
                 </ul>
 
             </nav>
-
-            <div id="result"></div>
+            <div id="result">
+            </div>
             <footer class="footer-main">
                 <div class="footer-addr">
                     <address>
@@ -131,5 +143,7 @@ and open the template in the editor.
                 </div>
             </footer>
         </div>
-    </body>
-</html>
+    
+
+
+</body></html>
