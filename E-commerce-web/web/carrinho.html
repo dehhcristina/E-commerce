@@ -30,7 +30,6 @@
                 var divProduto = document.createElement("DIV");
                 divProdutos.className = "divProdutos";
                 for (i = 0, qtde = obj.produtos.length; i < qtde; i++) {
-                    link = document.createElement("A");
                     produto = document.createElement("DIV");
                     produto.id = "p" + obj.produtos[i].cproduto;
                     produto.codigo = obj.produtos[i].cproduto;
@@ -61,14 +60,12 @@
                     } else {
                         img.setAttribute("src", "img/semImagem.jpg");
                     }
-                    link.setAttribute("href", "http://localhost:8080/E-commerce/umProduto.html?cproduto=" + obj.produtos[i].cproduto);
                     produto.appendChild(img);
                     produto.appendChild(nome);
                     produto.appendChild(valor);
                     produto.appendChild(qtdeProd);
                     produto.appendChild(btnRemover);
-                    link.appendChild(produto);
-                    divProduto.appendChild(link);
+                    divProduto.appendChild(produto);
                     divProdutos.appendChild(divProduto);
                 }
                 document.getElementById("result")
@@ -184,12 +181,13 @@
             }
             function parseJson(jsonData) {
                 var obj = JSON.parse(jsonData);
-                document.getElementById("result").innerHTML = "" + obj.mensagem;
+                alert("" + obj.mensagem);
+                carregarProdutos();
             }
         </script>
-        <title>Compre já</title>
+        <title>Delo</title>
     </head>
-    <body  onload="carregarProdutos()">
+    <body onload="carregarProdutos()">
         <div class="container">
             <header class="header-main">
                 <!-- BLOCO DA ESQUERDA, CABECALHO -->
@@ -201,15 +199,15 @@
                     <!-- BUSCA -->
                     <div class="header-search">
                         <form enctype="text/plain">
-                            <input id="PESQUISA" name="busca" type="search" placeholder="O que você procura?" required>
+                            
+                            <input id="PESQUISA" name="busca" type="search" placeholder="O que você procura?" required="">
                         </form>
                     </div>
                     <input type="button" class="buscar" id="buscar" value="Buscar" onclick="pesquisarProdutos(this.form)">
                 </div>
                 <form class="formEntra">
                     <div class="sign-in"><i class="fa fa-sign-in"></i></div>
-                    <div class="entre">Entre</div>
-                    <div class="cadastro">ou Cadastre-se</div>
+                    <div class="cadastro">Cadastre-se</div>
                 </form>
                 <a href="http://localhost:8080/E-commerce/carrinho.html"> <img class="car" src="img/carrinho.png" alt=""></a>
             </header>
@@ -224,10 +222,10 @@
                     <li><a href="">Informática</a></li>
                     <li><a href="">Livros</a></li>
                 </ul>
+
             </nav>
-            <div id="result">
-            </div>
-            <footer class="footer-main">
+            <div id="result"></div> <footer class="footer-main">
+				
                 <div class="footer-addr">
                     <address>
                         Central de Atendimento<br>
@@ -247,7 +245,6 @@
                 <div class="footer-who">
                     <p>Delo - Compras Online (2018©)</p>
                 </div>
-            </footer>
-        </div>
-    </body>
+            </footer>  
+</body>
 </html>

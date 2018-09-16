@@ -24,6 +24,29 @@ public class ClienteDAO {
         connection = ConnectionUtil.getConnection();
     }
 
+    public Cliente findByUser(String USUARIO) throws Exception {
+        try {
+            Cliente cliente = new Cliente();
+            PreparedStatement p = connection.prepareStatement("SELECT * FROM CLIENTE WHERE USUARIO=?");
+            p.setString(1, USUARIO);
+
+            ResultSet rs = p.executeQuery();
+
+            if (rs.next()) {
+                cliente.setCCLIENTE(rs.getInt("CCLIENTE"));
+                cliente.setCPF(rs.getString("CPF"));
+                cliente.setNOME(rs.getString("NOME"));
+                cliente.setSOBRENOME(rs.getString("SOBRENOME"));
+                cliente.setTELEFONE(rs.getString("TELEFONE"));
+                cliente.setSENHA(rs.getString("SENHA"));
+                cliente.setUSUARIO(rs.getString("USUARIO"));
+            }
+            return cliente;
+        } catch (SQLException ex) {
+            throw new Exception("Erro ao processar consulta! Verifique o log do aplicativo. ", ex);
+        }
+    }
+
     public Cliente findById(int CCLIENTE) throws Exception {
         try {
             Cliente cliente = new Cliente();

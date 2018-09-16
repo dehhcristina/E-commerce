@@ -45,15 +45,72 @@ body {
     padding-left: 4%;
 }
 div input {
-    margin-top: 2em;
-    width: 30em;
-    height: 3em;
+    margin-top: 2.5%;
+    width: 60%;
+    height: 6%;
     border-radius: .5em;
 }
 input {
     outline: none;
 }
+.umNome {
+    margin-top: 1%;
+    font-size: 2em;
+    font-weight: bold;
+    margin-right: 10%;
+    float: left;
+}
+.umProduto {
+    text-align: center;
+    border: 2px solid #00adef;
+    border-radius: 1em;
+    width: 64%;
+    float: left;
+    margin-left: .5%;
+    margin-top: 1%;
+    background-color: #fff;
+    height: 81%;
+}
+.produto img {
+    max-width: 10em;
+    margin-bottom: 13%;
+}
+.umValor {
+    float: left;
+    color: #ffa500;
+    font-weight: bold;
+    font-size: 1.5em;
+    margin-left: 8%;
+}
+.umBtnComprar {
+    cursor: pointer;
+    float: left;
+    background-color: #d0d0d0;
+    border-radius: .5em;
+    color: #080dce;
+    font-size: 1em;
+    width: 34%;
+    height: 7%;
+    margin-left: 1%;
+}
+.finalizarCompra {
+    cursor: pointer;
+    float: left;
+    background-color: #d0d0d0;
+    border-radius: .5em;
+    color: #080dce;
+    font-size: 1em;
+    margin: 2% 0% 2% 77%;
+    width: 21%;
+    height: 7%;
+}
+
+.qtdeProd {
+    width: 40%;
+    margin-top: 5%;
+}
 .buscar {
+	cursor: pointer;
     background-color: #d0d0d0;
     border-radius: .5em;
     float: left;
@@ -109,7 +166,9 @@ form.formEntra {
 .nav-main li a {
     display: inline-block;
 }
-
+.nav-main li a:hover {
+    color:orange;
+}
 a {
     color: #333;
     text-decoration: none;
@@ -118,7 +177,6 @@ a {
     overflow: hidden;
     width: 80%;
     margin: 0 auto;
-    height: 70em;
 }
 .formProduto {
     border: 1px solid black;
@@ -127,12 +185,87 @@ a {
     color: white;
     width: 84%;
     margin: 0 auto;
+	font-size: 1em;
+    font-weight: bold;
+	margin-top: 2%;
 }
 .cadastroProd {
-
+    font-weight: bold;
+    font-size: 2em;
+    margin-top: 5%;
 }
-div input {
-
+.salvarProd {
+    margin-bottom: 4%;
+    width: 26%;
+    margin-left: 59.4%;
+    margin-top: 2%;
+}
+.salvarCli {
+	margin-bottom: 4%;
+    width: 26%;
+    margin-left: 59.4%;
+    margin-top: 2%;
+}
+.produto {
+    text-align: center;
+    border: 2px solid #00adef;
+    border-radius: 1em;
+    width: 24%;
+    float: left;
+    margin-left: .5%;
+    margin-top: 1%;
+	background-color: #fff;
+}
+.divProdutos {
+	width:100%
+}
+.produto img {
+    max-width: 10em;
+    margin-bottom: 13%;
+}
+.nome {
+    margin-top: 1%;
+    font-size: 1em;
+}
+.btnComprar {
+    cursor: pointer;
+    float: left;
+    background-color: #d0d0d0;
+    border-radius: .5em;
+    color: #080dce;
+    font-size: 1em;
+    margin: 10% 0% 9% 47%;
+    width: 47%;
+    height: 7%;
+}
+.valor {
+    float: left;
+    color: #ffa500;
+    font-weight: bold;
+    font-size: 1.5em;
+    margin-top: 9%;
+    margin-left: 8%;
+}
+.formCliente {
+    border: 1px solid black;
+    text-align: center;
+    background-color: #00adef;
+    color: white;
+    width: 67%;
+    margin: 0 auto;
+    font-size: 1em;
+    font-weight: bold;
+    margin-top: 1.5%;
+}
+.cadastroCli {
+    font-weight: bold;
+    font-size: 2em;
+    margin-top: 5%;
+}
+.enviar {
+	margin-top:1em;
+	width: 10em;
+	background-color:#bfbfce;
 }
 .footer-main {
     clear: both;
@@ -154,4 +287,7 @@ div input {
 .footer-who {
     margin: 2em;
     text-align: center;
+}
+a.cadastro {
+    width: 60%;
 }

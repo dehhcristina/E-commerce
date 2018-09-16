@@ -82,6 +82,7 @@
                     btnComprar.dados = obj[i];
                     btnComprar.addEventListener("click", adicionarCarrinho);
                     img = document.createElement("IMG");
+                    img.setAttribute("onclick", function(){window.open('http://localhost:8080/E-commerce/umProduto.html?cproduto=' + obj[i].cproduto );} );
                     if (obj[i].imagem !== null && obj[i].imagem !== "") {
                         img.setAttribute("src", obj[i].imagem.replace(/^.*\\/, ""));
                     } else {
@@ -112,7 +113,7 @@
         </script>
         <title>Delo</title>
     </head>
-    <body  onload="carregarProdutos()">
+    <body onload="carregarProdutos()">
         <div class="container">
             <header class="header-main">
                 <!-- BLOCO DA ESQUERDA, CABECALHO -->
@@ -124,15 +125,15 @@
                     <!-- BUSCA -->
                     <div class="header-search">
                         <form enctype="text/plain">
-                            <input id="PESQUISA" name="busca" type="search" placeholder="O que você procura?" required>
+                            <input id="PESQUISA" name="busca" type="search" placeholder="O que você procura?" required="">
                         </form>
                     </div>
                     <input type="button" class="buscar" id="buscar" value="Buscar" onclick="pesquisarProdutos(this.form)">
                 </div>
                 <form class="formEntra">
                     <div class="sign-in"><i class="fa fa-sign-in"></i></div>
-                    <div class="entre">Entre</div>
-                    <div class="cadastro">ou Cadastre-se</div>
+                    
+                    <a class="cadastro" href="CadastrarCliente.html">Cadastre-se</a>
                 </form>
                 <a href="http://localhost:8080/E-commerce/carrinho.html"> <img class="car" src="img/carrinho.png" alt=""></a>
             </header>
@@ -149,9 +150,8 @@
                 </ul>
 
             </nav>
-
-            <div id="result"></div>
-            <footer class="footer-main">
+            <div id="result"></div><footer class="footer-main">
+				
                 <div class="footer-addr">
                     <address>
                         Central de Atendimento<br>
@@ -173,5 +173,5 @@
                 </div>
             </footer>
         </div>
-    </body>
+</body>
 </html>

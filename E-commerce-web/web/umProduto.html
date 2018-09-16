@@ -52,12 +52,6 @@ and open the template in the editor.
                     nome.innerText = obj.produto;
                     descricao = document.createElement("DIV");
                     descricao.className = "descricao";
-                    ficha = document.createElement("DIV");
-                    ficha.className = "ficha";
-                    ficha.innerText = obj.ficha;
-                    valor = document.createElement("SPAN");
-                    valor.className = "umValor";
-                    valor.innerText = "R$" + obj.valor;
                     btnComprar = document.createElement("INPUT");
                     btnComprar.className = "umBtnComprar";
                     btnComprar.setAttribute("type", "button");
@@ -73,9 +67,7 @@ and open the template in the editor.
                     produto.appendChild(img);
                     divProduto.appendChild(nome);
                     divProduto.appendChild(produto);
-                    divProduto.appendChild(valor);
                     divProduto.appendChild(btnComprar);
-                    divProduto.appendChild(ficha);
                     divProdutos.appendChild(divProduto);
                 document.querySelector("title").innerText = obj.produto;
                 document.getElementById("result").appendChild(divProdutos);
@@ -101,8 +93,7 @@ and open the template in the editor.
                 </div>
                 <form class="formEntra">
                     <div class="sign-in"><i class="fa fa-sign-in"></i></div>
-                    <div class="entre">Entre</div>
-                    <div class="cadastro">ou Cadastre-se</div>
+                    <div class="cadastro">Cadastre-se</div>
                 </form>
                 <a href="http://localhost:8080/E-commerce/carrinho.html"> <img class="car" src="img/carrinho.png" alt=""></a>
             </header>

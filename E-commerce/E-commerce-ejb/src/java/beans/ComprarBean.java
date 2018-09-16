@@ -41,7 +41,7 @@ public class ComprarBean implements ComprarBeanRemote, ComprarBeanLocal {
             produto.setCPRODUTO(CPRODUTO);
             pedidoItem.setCPRODUTO(produto);
             pedido = new Pedido();
-            pedido.setCPEDIDO(3);
+            pedido.setCPEDIDO(17);
             pedidoItem.setCPEDIDO(pedido);
             pedidoItem.setQTDE(QTDE);
             pedidoItemDAO.save(pedidoItem);
